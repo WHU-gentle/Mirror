@@ -1,0 +1,77 @@
+@charset "utf-8";
+/* CSS Document */
+
+@media only screen and (min-width:480px)
+{
+		body
+	    {
+		background-color: black;
+		text-shadow:none;
+		font-color:white;
+			
+	    }
+		h1{
+	font-size:3em;
+    font-weight: bold;
+	color:white;
+		
+		}
+		.center
+		{
+			align-content: center;
+			text-align: center;
+		}
+	    a
+	    {
+	  font-size:1em;
+      font-weight: bold;
+	  color:white;
+	
+	    }
+	.choose
+	{
+		background-color:darkgray;
+	}
+	
+	}
+	
+	div.menu li
+	{
+		float:left;
+		width:33%;
+		paddding:1;
+		height:10%
+
+	}
+	div.menu{
+		width:100%;	
+	}
+	#data h3
+{
+	color:white;
+	font-size:2em;
+}
+#data p 
+{
+	color:white;
+	font-size:5em;
+}
+     #data
+     {
+	 border: 1px solid #4C4747;
+     margin-left: 5%;
+	 margin-right: 5%;
+     padding: 5px;
+		height:100%;
+}
+.ui-block-a,.ui-block-b,.ui-block-c,.ui-block-d
+{
+	text-align: center;
+	height:20em;
+}
+#ps h2
+{
+		color:white;
+	font-size:1em;
+}
+}

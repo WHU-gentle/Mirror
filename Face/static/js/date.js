@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-<meta charset="UTF-8">
-<title></title>
-<link href="/static/css/style1.css" type="text/css" rel="stylesheet">
-<script src="static/js/jquery-1.8.0.min.js" ></script>
-<script src="static/js/circle.js" type="text/javascript"></script>
-<script type="text/javascript">
-
-function clock_12h()
+$(function clock_12h()
 {
  var today = new Date(); //获得当前时间
  //获得年、月、日，Date()函数中的月份是从0－11计算
@@ -51,24 +41,9 @@ function clock_12h()
  }
  
   /*设置div的内容为当前时间*/
- document.getElementById("myclock").innerHTML="&nbsp"+"&nbsp;"+"&nbsp;"+year+"年"+month+"月"+date+"日&nbsp;"+"<br>"+hour+":"+minute+":"+second+"&nbsp;"+apm+"&nbsp;"+weekday+"</h2>";
+ document.getElementById("myclock").innerHTML="<h2>"+year+"年"+month+"月"+date+"日&nbsp;"+"&nbsp;"+weekday+"</h2>";
 
 }
 /*使用setInterval()每间隔指定毫秒后调用clock_12h()*/
 var myTime = setInterval("clock_12h()",1000);
-
-</script>
-
-</head>
-<body>
-<div id="myclock"></div>
-    <div id="out">
-	    <div id="first"><a href="history.html"><img src="static/img/history.png"></a></div>
-	    <div id="second"><a href="takephoto.html"><img src="static/img/scan.png"></a></div>
-	    <div id="third"><a href="login"><img src="static/img/set.png"></a></div>
-	</div>
-	<div id="nav">
-	    <img src="static/img/home.png">
-	</div>
-</body>
-</html>
+)

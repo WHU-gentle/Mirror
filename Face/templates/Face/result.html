@@ -1,19 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="UTF-8">
-<title>Mirror</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<mate name="viewport" content="width=device-width,initial-scale=1"/>
+<link rel="stylesheet" href="/static/css/jquery.mobile-1.4.5.css" type="text/css" />
+<link rel="stylesheet" href="/static/css/structure-1.4.5.css" type="text/css" />
+<link rel="stylesheet" href="/static/css/jquery.mobile.icons-1.4.5.css" type="text/css" />
+<link href="/static/css/analyze.css" rel="stylesheet" type="text/css" />
+<script src="/static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+<title>analyze</title>
+<script>
+	
+$(document).ready(function() {
+
+	$(".menu ul li").click(function() {
+
+		$(this).addClass("choose").siblings().removeClass("choose");
+
+	});
+
+});
+	
+	
+var string="iascghjvdscvadj";
+var result={health:"health_value",stain:"stain_value",acne:"acne_value",dark_circle:"dark_circle_value"};
+	
+function p{
+	alert(string);
+}
+</script>
 </head>
 
 <body>
-<table>
-    <tr>
-        <td><h3>肤质健康</h3></td> <td><h1>{{ health }}</h1></td>
-        <td><h3>色斑</h3></td> <td><h1>{{ stain }}</h1></td>
-        <td><h3>青春痘</h3></td> <td><h1>{{ acne }}</h1></td>
-        <td><h3>黑眼圈</h3></td> <td><h1>{{ dark_circle }}</h1></td>
-    </tr>
-</table>
+<div data-role="page" class="color">
+<div data-role="header"  class="center">
+
+<h1>分析结果</h1 >
+<div hidden data-role="navbar" class="menu" >
+	<ul >
+		<li ><a herf="#page1" class="ui-btn-active">综合</a></li>
+		<li ><a herf="#page2" class="ui-btn-active">问题</a></li>
+		<li ><a herf="#page3" class="ui-btn-active">建议</a></li>
+	</ul>
+</div>
+</div>
+
+<div data-role="content">
+
+<ul  id="data" data-role="listview">
+  <div class="ui-grid-a">
+    <div class="ui-block-a">
+	  <h3>健康</h3>
+	  <p id="health_value" >
+	  	{{health}}
+	  </p>
+	  </div>
+    <div class="ui-block-b">
+    	<h3 >色斑</h3>
+    	<p id="strin_value">
+    	{{stain}}
+    	</p>
+    </div>
+    <div class="ui-block-a">
+    	<h3 >青春痘</h3>
+            
+    	<p id="acne_value">
+    	{{acne}}	
+    	</p>
+    </div>
+    <div class="ui-block-b">
+    	<h3 >黑眼圈</h3>
+    	<p id="dark_circle_value">
+    	{{dark_circle}}	
+    	</p>
+    </div>
+    <div id="ps" class="center">
+    <c
+    <h2>分数越低表示皮肤状态越好哦~</h2>
+    </div>
+  </div>
+
+	
+	
+</ul>
+
+</div>
+</div
+</div>
 </body>
 </html>
-
