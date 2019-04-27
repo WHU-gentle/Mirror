@@ -46,15 +46,50 @@
 
 	</script>
 	<style>
+				body {
+			transform: scale(0.9);
+            overflow-x:hidden;
+         
+}
+
+	.anniu
+{
+	float:inherit;
+  background: none;
+  border: none;
+  font-family:Constantia, Lucida Bright, DejaVu Serif, Georgia, serif;
+  font-weight: bold;
+  font-size: 2em;
+  margin: 15px 35px;
+  padding: 15px 40px;
+  min-width: 5em;
+  border-radius: 50px;
+  min-height: 2.5em;
+  color:black;
+  cursor: pointer;
+  backface-visibility: hidden;
+  transition: all .3s;
+  background: linear-gradient(white, white, white);
+  box-shadow: 0px 4px 30px rgba(19, 127, 212, 0.4);
+}
+		#video
+		{
+			min-width: 100%;
+			margin:auto;
+		}
+		
+		#photo
+		{
+			min-width:100%;
+			margin:auto;
+			align-content: center;
+			
+		}
 		#control
 		{
-			height:5%;
+			margin-top: 10px;
 		}
-		input,button
-		{
-			width:100px;
-			height:50px;
-		}
+
 	</style>
 </head>
 
@@ -65,17 +100,18 @@
             {% csrf_token %}
 </form>
 
-<div data-role="content">
-	<video id="video" width="100%" height="100%" autoplay></video>
-	<canvas id="canvas" width="100%" height="100%"></canvas>
+<div id="photo">
+	<video id="video"  autoplay-policy> </video>
+	<canvas hidden id="canvas" ></canvas>
 	</div>
-<div data-role="footer">
-<div id="control" data-role="controlgroup" align="center" data-type="horizontal">
-	<input  type="button" title="开启摄像头" value="开始" onclick="getMedia()" />
-     <button    onclick="takePhoto();UploadPic()" > 拍照 </button>
-     <input id="pic" type="hidden"/>
+
+<div id="control"  align="center" data-type="horizontal" margin-top="0">
+  <input class="anniu" type="button" title="开启摄像头" value="开始" onclick="getMedia()" />
+  <button  class="anniu"  onclick="takePhoto();UploadPic()" > 拍照 </button>
+  <button class="anniu"  onclick="window.location.href='home.html'" >返回</button>
+ 
      </div>
-	</div>
+
 
 </body>
 </html>
