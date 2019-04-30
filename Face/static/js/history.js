@@ -67,25 +67,32 @@ line.setOption({
 
 //柱状图
 var pillar1 = echarts.init(document.getElementById('pillar1'));
-
+var data=[];
+var data_x=['4.20','4.21','4.22','4.23','4.24','4.25','4.26','4.27','4.28','4.29','4.30'];
+var data_ya=['11','22','33','44','55','66','67','77','88','99','67'];
+var data_yb=['14','54','64','46','75','58','87','67','86','87','57'];
+var data_yc=['74','85','85','47','85','48','86','96','96','58','86'];
+data.push(data_x);
+data.push(data_ya);
+data.push(data_yb);
+data.push(data_yc);
 pillar1.setOption({
     color:["#ce6e73","#ee804b","#ffc668"],
     title : {
-        subtext: '平均分（分）'
+        subtext: '分数（分）'
     },
     tooltip : {
         trigger: 'axis'
     },
     legend: {
         x: 'right',
-        data:['您的班级','全市','全国']
+        data:['皱纹','斑点','痘印']
     },
     calculable : true,
     xAxis : [
         {
             type : 'category',
-            data : ['语言','词汇','词汇1','词汇2','词汇3','词汇4',
-            '词汇5','词汇6','词汇7','词汇8','词汇9','词汇10']
+            data : data_x
         }
     ],
     yAxis : [
@@ -95,19 +102,19 @@ pillar1.setOption({
     ],
     series : [
         {
-            name:'您的班级',
+            name:'皱纹',
             type:'bar',
-            data:[74, 62, 56, 79, 80, 30, 55, 35, 38, 41, 75, 89]
+            data:data_ya
         },
         {
-            name:'全市',
+            name:'斑点',
             type:'bar',
-            data:[70, 65, 80, 71, 70, 40, 35, 46, 58, 40, 56, 30]
+            data:data_yb
         },
         {
-            name:'全国',
+            name:'痘印',
             type:'bar',
-            data:[60, 55, 70, 61, 60, 30, 45, 36, 48, 50, 56, 40]
+            data:data_yc
         }
     ]
 }) ;
@@ -116,6 +123,12 @@ pillar1.setOption({
 
 //柱状图2
 var pillar2 = echarts.init(document.getElementById('pillar2'));
+var data_x3=['4.20','4.21','4.22','4.23','4.24','4.25','4.26','4.27','4.28','4.29','4.30'];
+var data_y3=['87','98','67','86','98','75','65','56','76','45','65'];
+var data=[];
+data.push(data_x3);
+data.push(data_y3);
+
 pillar2.setOption({
     color:["#00afff"],
     tooltip : {
@@ -125,8 +138,7 @@ pillar2.setOption({
     xAxis : [
         {
             type : 'category',
-            data : ['语言','词汇','词汇1','词汇2','词汇3','词汇4',
-            '词汇5','词汇6','词汇7']
+            data : data_x3
         }
     ],
     yAxis : [
@@ -136,9 +148,9 @@ pillar2.setOption({
     ],
     series : [
         {
-            name:'您的班级',
+            name:'index',
             type:'bar',
-            data:[74, 62, 56, 79, 80, 30, 55, 35, 38]
+            data:data_y3
         }
     ]
 });
