@@ -12,6 +12,13 @@ def index(request):
     return render(request,'Face/home.html')
 #登录&注册
 def login(request):
+
+    if request.session.get('is_login',None):
+        user = models.User.objects.get(name=request.session['user_name'])
+        data = {"name": user.name, "sex": user.sex, "height": user.height, "weight": user.weight, "age": 19}
+        return render(request,'Face/info.html',data)
+
+    #在没有session的条件下登录时创建session
     if request.method == "POST":
         username = request.POST.get('user')
         password = request.POST.get('pwd')
@@ -19,7 +26,9 @@ def login(request):
             username = username.strip()
             try:
                 user = models.User.objects.get(name=username)
-                if user.password == password:
+                if user.password == password:#验证密码
+                    request.session['is_login']=True
+                    request.session['user_name']=user.name #将用户名作为session标记
                     data={"name":username,"sex":user.sex,"height":user.height,"weight":user.weight,"age":19}
                     return render(request,'Face/info.html',data)
             except:
@@ -30,11 +39,21 @@ def login(request):
 #注册
 #def register(request):
 
+#注销
+def logout(request):
+    if not request.session.get('is_login',None):
+        return redirect('index')
+    request.session.flush()
+    return redirect('index')
     
+#检测
+def detect(request):
+    return render(request,'Face/takephoto.html')
+    
+#显示结果   
 def result(request):
-
     #所用参数赋值
-    url = "https://api-cn.faceplusplus.com/facepp/v3/detect"
+    '''url = "https://api-cn.faceplusplus.com/facepp/v3/detect"
     key = "qM0Y_YHyYH4Xjajsa41ypxOUlnzEI-cg"
     secret = "L-lnwmoVCXzuL0ShEYhFB9TlVQ6hyIWZ"
     img = request.POST['pic']
@@ -56,7 +75,48 @@ def result(request):
         content = req_dict['faces'][0]['attributes']['skinstatus'] 
         return render(request,'Face/result.html',content)
     else:
-        return render(request,'Face/error.html')
+        return render(request,'Face/error.html')'''
+    
+    #测试数据
+    data={'code': 0,
+'error_detect_types': 0,
+'filename': 'prd-api1/2019/0427/ddfbb4fcb4ebad1cd7e408dc92b11fe5-2113336.jpg',
+'detect_types': '504205',
+'age': {'result': 31},
+ 'detect_type': 131072,
+  'blackhead': {'filename': 'prd-apiout1/2019/0427/d88f41e87bf6fdb9e02a7e6012b1eb52-2113337.jpg',
+                 'count': 12,
+                 'score': 88},
+  'color': {'result': 'ziran'},
+  'roughness': {'filename': 'prd-apiout1/2019/0427/c915ad19e7b96613efca346c5a9d9096-2113338.jpg',
+                'score': 96},
+  'moisture': {'filename': 'prd-apiout1/2019/0427/eee90c2c3ed3059799396ab6c29cf87b-2113198.jpg',
+                'result': '0.348',
+                'score': '86',
+                 'class': [{'result': 0.331, 'class': 'left_cheek'},
+                             {'result': 0.36, 'class': 'right_cheek'},
+                             {'result': 0.397, 'class': 'forehead'},
+                             {'result': 0.287, 'class': 'chin'}]},
+  'skin_type': {'filename': 'prd-apiout1/2019/0427/8389afca8e7c18ae901d3b3a6e587edf-2113241.jpg',
+                'result': '0.831',
+                'class': [{'result': 0.882, 'class': 'left_cheek'},
+                            {'result': 0.509, 'class': 'right_cheek'},
+                            {'result': 1, 'class': 'forehead'},
+                             {'result': 0.801, 'class': 'chin'}],
+                'oily': '1.000000', 'dry': '0.000000', 'mixed': '0.000000', 'score': 40},
+   'appearance': {'score': 83},
+   'pore': {'filename': 'prd-apiout1/2019/0427/c21cbff09c91c6e72a4f9ed1ee4a05dd-2113339.jpg', 'count': 403, 'score': 79},
+   'wrinkle': {'filename': 'prd-apiout1/2019/0427/24719d4725c9d16a2fdb88d29945f695-2113199.jpg', 'count': 6, 'score': 82,
+                'class': [{'count': 1, 'class': 'forehead'},
+                            {'count': 2, 'class': 'eyecorner'},
+                            {'count': 2, 'class': 'nasolabial'},
+                            {'count': 1, 'class': 'crowfeet'},
+                             {'count': 0, 'class': 'glabella'}]},
+   'dark_circle': {'filename': 'prd-api1/2019/0427/ddfbb4fcb4ebad1cd7e408dc92b11fe5-2113336.jpg', 'result': 0},
+   'pockmark': {'filename': 'prd-apiout1/2019/0427/1f6f84374fed35d7a80113ff4b8d2505-2113201.jpg', 'count': 2, 'score': 96},
+   'id': 'a616e7364557b6f9975f2aca1b7b996c'}
+
+    return render(request,'Face/scan.html',data)
 
 
 #填补base64码的空白
