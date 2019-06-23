@@ -24,6 +24,7 @@ def login(request):
         password = request.POST.get('pwd')
         if username and password:#用户名和密码都不为空
             username = username.strip()
+            #后期用于进行密码格式相关验证
             try:
                 user = models.User.objects.get(name=username)
                 if user.password == password:#验证密码
@@ -37,12 +38,26 @@ def login(request):
     return render(request,'Face/login.html')
 
 #注册
-#def register(request):
+def register(request):
+    if request.method=="POST":
+        new_user = models.User.objects.create()
+        new_user.name = request.POST.get('name_r')
+        if request.POST.get('psd_r')==request.POST.get('affirm_psd'):
+            #密码一致
+            new_user.password = request.POST.get('psd_r')
+        else:
+            #返回密码不一致信息
+        new_user.sex = request.POST.get('sex_r')
+
+    new_user.save()
+    return render(request,'Face/login.html')
 
 #注销
 def logout(request):
     if not request.session.get('is_login',None):
+        #如果没有登录 也就不需要注销
         return redirect('index')
+    #否则清除session
     request.session.flush()
     return redirect('index')
     

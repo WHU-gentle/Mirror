@@ -53,7 +53,7 @@ function clock_12h()
   /*设置div的内容为当前时间*/
  document.getElementById("myclock").innerHTML="&nbsp"+"&nbsp;"+"&nbsp;"+year+"年"+month+"月"+date+"日&nbsp;"+"<br>"+hour+":"+minute+":"+second+"&nbsp;"+apm+"&nbsp;"+weekday+"</h2>";
 
-}
+}       
 /*使用setInterval()每间隔指定毫秒后调用clock_12h()*/
 var myTime = setInterval("clock_12h()",1000);
 
@@ -63,8 +63,8 @@ var myTime = setInterval("clock_12h()",1000);
 <body>
 <div id="myclock"></div>
     <div id="out">
-	    <div id="first"><a href="history.html"><img src="static/img/history.png"></a></div>
-	    <div id="second"><a href="takephoto.html"><img src="static/img/scan.png"></a></div>
+	    <div id="first"><a href=""><img src="static/img/history.png"></a></div>
+	    <div id="second"><a href="detect"><img src="static/img/scan.png"></a></div>
 	    <div id="third"><a href="login"><img src="static/img/set.png"></a></div>
 	</div>
 	<div id="nav">

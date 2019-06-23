@@ -156,7 +156,8 @@ function barter_btn(bb) {
 
 <div class="register_body">
 	<div class="col-xs-12 register_title">注册</div>
-	<form action="" class="register" method="post">
+	<form action="/register/" class="register" method="post">
+	{% csrf_token %}
 		<div class="nav">
 			<div class="nav register_nav">
 				<div class="col-xs-4">

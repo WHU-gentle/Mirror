@@ -40,4 +40,52 @@ class UserFace(models.Model):
 
 #肤质测试记录
 class SkinRecord(models.Model):
-    name = models.CharField(max_length=64,)
+    name = models.CharField(max_length=64,primary_key=True)
+    time = models.DateTimeField()
+    image = models.BinaryField()
+    age = models.IntegerField()
+    wrinkleCount = models.IntegerField()
+    wrinkleScore = models.IntegerField()
+    wrinkleGlabellaCount = models.IntegerField()
+    wrinkleCrowfeetCount = models.IntegerField()
+    wrinkleNasolabialCount = models.IntegerField()
+    wrinkleEyecornerCount = models.IntegerField()
+    wrinkleForeheadCount = models.IntegerField()
+    pockmarkCount = models.IntegerField()
+    pockmarkScore = models.IntegerField()
+    blackheadCount = models.IntegerField()
+    blackheadScore = models.IntegerField()
+    darkCircleResult = models.FloatField()
+    colorResult = models.CharField(max_length=16)
+    skinTypeOily = models.CharField(max_length=16)
+    skinTypeDry = models.CharField(max_length=16)
+    skinTypeMixed = models.CharField(max_length=16)
+    foreheadOilResult = models.FloatField()
+    foreheadChinResult = models.FloatField()
+    foreheadLeftCheekResult = models.FloatField()
+    foreheadRightCheekResult = models.FloatField()
+    moistureResult = models.CharField(max_length=32)
+    moistureScore = models.IntegerField()
+    roughnessScore = models.IntegerField()
+    poreCount = models.IntegerField()
+    poreScore = models.IntegerField()
+
+#五官特征测试记录
+class FaceRecord(models.Model):
+    name = models.CharField(max_length=64)
+    time = models.DateTimeField()
+    image = models.BinaryField()
+    faceShape = models.CharField(max_length=16)
+    lipShape = models.CharField(max_length=16)
+    chinShape = models.CharField(max_length=16)
+    eyeShape = models.CharField(max_length=16)
+    browShape = models.CharField(max_length=16)
+    noseShape = models.CharField(max_length=16)
+    forehead = models.CharField(max_length=16)
+
+#形象设计指南
+class FaceRecomend(models.Model):
+    type = models.CharField(max_length=16)
+    comment = models.CharField(max_length=64)
+    suggest = models.CharField(max_length=512)
+
