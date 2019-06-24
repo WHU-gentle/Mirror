@@ -19,13 +19,16 @@ class User(models.Model):
 
 #皮肤分析历史
 class UserSkin(models.Model):
-    name =  models.CharField(max_length=64,primary_key=True)
+    name =  models.CharField(max_length=64)
     time = models.DateTimeField()
     totalScore = models.IntegerField()
     youngScore = models.IntegerField()
     healthScore = models.IntegerField()
     oilScore = models.IntegerField()
     softScore = models.IntegerField()
+
+    class Meta:
+        unique_together = ("name","time")
 
 #五官特征分析结果
 class UserFace(models.Model):

@@ -45,8 +45,6 @@ def register(request):
         if request.POST.get('psd_r')==request.POST.get('affirm_psd'):
             #密码一致
             new_user.password = request.POST.get('psd_r')
-        else:
-            #返回密码不一致信息
         new_user.sex = request.POST.get('sex_r')
 
     new_user.save()
@@ -68,32 +66,30 @@ def detect(request):
 #显示结果   
 def result(request):
     #所用参数赋值
-    '''url = "https://api-cn.faceplusplus.com/facepp/v3/detect"
-    key = "qM0Y_YHyYH4Xjajsa41ypxOUlnzEI-cg"
-    secret = "L-lnwmoVCXzuL0ShEYhFB9TlVQ6hyIWZ"
-    img = request.POST['pic']
-    attr = "skinstatus"
-    
+    type = 504205
+    url = 'https://api.yimei.ai/v1/api/face/analysis/' + str(type)
+    client_id = "f0dbe1dac09c2ae9";
+    client_secret = "de7015dc94e87829b1552a639e6c9c13";
+    a = client_id + ':' + client_secret
     #保存图片到本地
+    img = request.POST['pic']
     imagedata = decode_base64(img[len("data:image/jpg;base64,"):])
     with open('p.jpg','wb') as file:
         file.write(imagedata)
-
-    data={"api_key":key,"api_secret":secret,"image_base64":img,"return_attributes":attr}
-    #发送数据
-    response = requests.post(url,data=data)
+    bodys = {"detect_types": type}
+    bodys['image'] = ""
+    headers = {'Authorization': 'Basic ' + str(base64.b64encode(a.encode("utf-8")), "utf-8"),
+               "Content-Type": 'application/x-www-form-urlencoded; charset=UTF-8', "Host": "api.yimei.ai",
+               "Accept": "application/json"}
+    #发送请求
+    response = requests.post(url, data=bodys, headers=headers)
     #对返回内容进行解码
     req_con = response.content.decode('utf-8')
-    req_dict = JSONDecoder().decode(req_con)
+    data = JSONDecoder().decode(req_con)
     #对返回结果进行判断
-    if len(req_dict['faces'])!=0:
-        content = req_dict['faces'][0]['attributes']['skinstatus'] 
-        return render(request,'Face/result.html',content)
-    else:
-        return render(request,'Face/error.html')'''
     
     #测试数据
-    data={'code': 0,
+    '''data={'code': 0,
 'error_detect_types': 0,
 'filename': 'prd-api1/2019/0427/ddfbb4fcb4ebad1cd7e408dc92b11fe5-2113336.jpg',
 'detect_types': '504205',
@@ -131,6 +127,22 @@ def result(request):
    'pockmark': {'filename': 'prd-apiout1/2019/0427/1f6f84374fed35d7a80113ff4b8d2505-2113201.jpg', 'count': 2, 'score': 96},
    'id': 'a616e7364557b6f9975f2aca1b7b996c'}
 
+    #根据返回数据存储数据库
+    #Table1 皮肤分析历史
+    new_skin = models.UserSkin.objects.create()
+    #年轻度
+    age_ = data[age][result]
+    if age_>=0 and age<=25:
+        y = 100
+    elif age_>=26 and age_<=35:
+        y = 90
+    elif age_>=36 and age_<=46:
+        y = 80
+    elif age_>=46 and age_<=56:
+        y = 70
+    else:
+        y=60
+    new_skin.youngScore = y*0.5+data['wrinkle']['score']*0.5'''
     return render(request,'Face/scan.html',data)
 
 

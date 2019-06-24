@@ -70,13 +70,23 @@
   <input class="anniu" type="button" title="开启摄像头" value="开始" onclick="getMedia()" />
   <button  class="anniu"  onclick="takePhoto();UploadPic()" > 拍照 </button>
   <button class="anniu"  onclick="window.location.href='home.html'" >返回</button>
- 
-     </div>
+</div>
+
+<form method="POST" action="/result/" id="p">
+            <input type="hidden" name="pic" id="pic_url">
+            {% csrf_token %}
+</form>
+
 <script>
 	 function UploadPic() {                 
 		 // Generate the image data（将Canvas的内容保存为图片借助toDataURL来实现） 方法返回一个包含图片展示的 data URI 。           
 		 
-		  var Pic = document.getElementById("video");
+		  var Pic = document.getElementById("canvas").toDataURL("image/jpg");  
+		  document.getElementById("pic_url").value = Pic; 
+		  var form=document.getElementById("p");
+		  form.submit(); 
+		  
+		  
 		 $.ajax({                    
 			 type: 'post',                     
 			 url:  "",                     
