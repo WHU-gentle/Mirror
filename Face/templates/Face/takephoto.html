@@ -36,8 +36,8 @@
 		{
 			min-width: 100%;
 			
-			width:500px;
-			height:500px;
+			width:480px;
+			height:800px;
 		}
 		
 		#photo
@@ -48,22 +48,22 @@
 			
 		}
 		#canvas{
-			width:500px;
-			height:500px;
+			width:480px;
+			height:800px;
 			margin-left: 25%;
 			margin-bottom: 50px;
 		}
 		#control
 		{
-			margin-top: 10px;
+			margin-top: 200px;
 		}
 	</style>
 </head>
 
 <body bgcolor="black">
 <div id="photo">
-	<video id="video" width="500px" height="500px" autoplay></video>
-	<canvas id="canvas" width="500px" height="500px"></canvas>
+	<video id="video" width="480px" height="800px" autoplay></video>
+	<canvas id="canvas" width="480px" height="800px"></canvas>
 	</div>
 
 <div id="control"  align="center" data-type="horizontal" margin-top="0">
@@ -92,7 +92,7 @@
 	 } 
       function getMedia() {
             let constraints = {
-                video: {width: 500, height: 500},
+                video: {width: 480, height: 800},
                 audio: true
             };
             //获得video摄像头区域
@@ -115,8 +115,7 @@
      let video = document.getElementById("video");
      let canvas = document.getElementById("canvas");
       let ctx = canvas.getContext('2d');
-     // ctx.drawImage(canvas, 0,0,video.width,video.height);
-	  ctx.drawImage(video,0,0,video.width,video.height);
+	  ctx.drawImage(video,0,0);
 	  
       }
 	//var type='png';
