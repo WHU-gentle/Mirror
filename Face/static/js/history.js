@@ -6,8 +6,9 @@
 //折线图
 var line = echarts.init(document.getElementById('line1'));
 var data1=['2.21','2.22','2.23','2.24','2.25','22.26','2.27','2.28','2.29','2.30','3.1','3.1','3.2','3.3','3.4','3.5','3.6','3.7','3.8','3.9','3.10','3.11','3.12','3.13','3.14','3.15','3.16','3.17','3.18','3.19','3.20'];
-var data2=[44,23, 42, 18, 45, 48, 49,100,64,63,26,25,86,84,39,85,94,35,75,52,76,86,46,37,57,35,75,65,34,77];
-var data=[];
+var data2=[66,65, 68, 65, 67, 64, 60,67,67,68,67,68,68,65,67,69,69,68,70,69,71,72,70,71,72,73,72,71,72,74];
+
+
 data.push(data1);
 data.push(data2);
 line.setOption({
@@ -55,7 +56,7 @@ line.setOption({
     ],
     series: [
         {
-            name:'成绩',
+            name:'总分',
             type:'line',
             data:data2,
             markLine: {data: [{type: 'average', name: '平均值'}]}
@@ -86,7 +87,7 @@ pillar1.setOption({
     },
     legend: {
         x: 'right',
-        data:['皱纹','斑点','痘印']
+        data:['细腻度','健康度','油干性']
     },
     calculable : true,
     xAxis : [
@@ -102,17 +103,17 @@ pillar1.setOption({
     ],
     series : [
         {
-            name:'皱纹',
+            name:'细腻度',
             type:'bar',
             data:data_ya
         },
         {
-            name:'斑点',
+            name:'健康度',
             type:'bar',
             data:data_yb
         },
         {
-            name:'痘印',
+            name:'油干性',
             type:'bar',
             data:data_yc
         }
@@ -148,7 +149,7 @@ pillar2.setOption({
     ],
     series : [
         {
-            name:'index',
+            name:'年轻度',
             type:'bar',
             data:data_y3
         }
