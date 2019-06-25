@@ -9,18 +9,13 @@ class User(models.Model):
     gender = (('mail','男'),('femail','女'),)
     sex = models.CharField(max_length=32, choices=gender, default='女')
     birth = models.DateField()
-
-    email = models.EmailField(unique=True)
-    height = models.FloatField()
-    weight = models.FloatField()
-
     def __str__(self):
         return self.name
 
 #皮肤分析历史
 class UserSkin(models.Model):
     name =  models.CharField(max_length=64)
-    time = models.DateTimeField()
+    time = models.DateTimeField(auto_now_add=True)
     totalScore = models.IntegerField()
     youngScore = models.IntegerField()
     healthScore = models.IntegerField()

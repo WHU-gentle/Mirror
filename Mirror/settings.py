@@ -25,7 +25,7 @@ SECRET_KEY = 'eakp7$h4l8ifar!k1v$5+(b55ym@y22uc^rbu6pr!-hx6cbl*7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -76,11 +76,14 @@ WSGI_APPLICATION = 'Mirror.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'magicmirror',
+        'USER':'my',
+        'PASSWORD':'MagicMirror!',
+        'HOST':'rm-wz9dt1ve20f4762akuo.mysql.rds.aliyuncs.com',
+        'PORT':3306,
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -119,3 +122,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR,'static').replace('\\','/'),)
