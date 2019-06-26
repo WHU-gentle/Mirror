@@ -1,33 +1,41 @@
 from django.db import models
+import django.utils.timezone as timezone
 
 # Create your models here.
 #用户信息
+
 class User(models.Model):
-    '''用户'''
-    name = models.CharField(max_length=64,unique=True,primary_key=True)
-    password = models.CharField(max_length=64)
-    gender = (('mail','男'),('femail','女'),)
-    sex = models.CharField(max_length=32, choices=gender, default='女')
-    birth = models.DateField()
+    uid = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=10,unique=True)
+    password = models.CharField(max_length=20)
+    sex = (('mail','男'),('femail','女'),)
+    gender = models.CharField(max_length=2, choices=sex, default='女')
+    birth = models.DateField(default=timezone.now().date)
+
     def __str__(self):
         return self.name
 
 #皮肤分析历史
 class UserSkin(models.Model):
-    name =  models.CharField(max_length=64)
-    time = models.DateTimeField(auto_now_add=True)
-    totalScore = models.IntegerField()
-    youngScore = models.IntegerField()
-    healthScore = models.IntegerField()
-    oilScore = models.IntegerField()
-    softScore = models.IntegerField()
+    uid = models.IntegerField(primary_key=True)
+    stime = models.DateTimeField(default=timezone.now)
+    totalScore = models.IntegerField(default=100)
+    youngScore = models.IntegerField(default=100)
+    healthScore = models.IntegerField(default=100)
+    oilScore = models.IntegerField(default=100)
+    softScore = models.IntegerField(default=100)
+
+    def __str__(self):
+        filename = self.uid+self.stime
+        return filename
 
     class Meta:
-        unique_together = ("name","time")
+        unique_together = ("stime", "uid")
 
 #五官特征分析结果
 class UserFace(models.Model):
-    name = models.CharField(max_length=64)
+    uid = models.ForeignKey(User)
+    ftime = models.DateTimeField(default=timezone.now)
     faceShape = models.CharField(max_length=16)
     lipShape = models.CharField(max_length=16)
     chinShape = models.CharField(max_length=16)
@@ -38,9 +46,8 @@ class UserFace(models.Model):
 
 #肤质测试记录
 class SkinRecord(models.Model):
-    name = models.CharField(max_length=64,primary_key=True)
-    time = models.DateTimeField()
-    image = models.BinaryField()
+    uid = models.ForeignKey(User)
+    time = models.DateTimeField(default= timezone.now)
     age = models.IntegerField()
     wrinkleCount = models.IntegerField()
     wrinkleScore = models.IntegerField()
@@ -69,21 +76,7 @@ class SkinRecord(models.Model):
     poreScore = models.IntegerField()
 
 #五官特征测试记录
-class FaceRecord(models.Model):
-    name = models.CharField(max_length=64)
-    time = models.DateTimeField()
+class ImageRecord(models.Model):
+    uid = models.ForeignKey(User,primary_key=True)
+    time = models.DateTimeField(default=timezone.now)
     image = models.BinaryField()
-    faceShape = models.CharField(max_length=16)
-    lipShape = models.CharField(max_length=16)
-    chinShape = models.CharField(max_length=16)
-    eyeShape = models.CharField(max_length=16)
-    browShape = models.CharField(max_length=16)
-    noseShape = models.CharField(max_length=16)
-    forehead = models.CharField(max_length=16)
-
-#形象设计指南
-class FaceRecomend(models.Model):
-    type = models.CharField(max_length=16)
-    comment = models.CharField(max_length=64)
-    suggest = models.CharField(max_length=512)
-

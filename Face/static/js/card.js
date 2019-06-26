@@ -5,8 +5,7 @@ var messageBox = document.querySelector('.js-message');
   var returnBtn = document.querySelector('.js-return');
 
   btn.addEventListener('click',function (e) {
-      e.preventDefault();
-      card.classList.add('active');
+      window.location.replace("../logout")
   });
 
   closeBtn.forEach(function (element, index) {
@@ -19,5 +18,5 @@ var messageBox = document.querySelector('.js-message');
 
   returnBtn.addEventListener('click',function (e) {
       e.preventDefault();
-      window.open("../") ;
+      window.location.replace("") ;
   });

@@ -6,7 +6,8 @@
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet" href="/static/css/card_style.css">
 <link href="/static/css/style1.css" type="text/css" rel="stylesheet">
-<script src="/static/js/jquery-1.8.0.min.js"></script>
+<script src="/static/js/jquery-1.8.0.min.js" ></script>
+
 </head>
 
 <body>
@@ -14,43 +15,31 @@
 <div class="wrapper">
 	<div class="profile-card js-profile-card">
 		<div class="profile-card__img">
-			<img src="/static/img/timg.jpg">
+			<img src="/static/img/timg.png">
 		</div>
 	
 		<div class="profile-card__cnt js-profile-cnt">
-			<div class="profile-card__name">{{name}}</div>
-			<div class="profile-card-loc">
-				<span class="profile-card-loc__icon">
-					<svg class="icon"><use xlink:href="#icon-location"></use></svg>
-				</span>
-				<span class="profile-card-loc__txt">WuHan</span>
-			</div>
-		
+			<div class="profile-card__name">{{UserInfo.name}}</div>
 			<div class="profile-card-inf">
 				<div class="profile-card-inf__item">
 					<div class="profile-card-inf__title">性别</div>
-					<div class="profile-card-inf__txt">{{sex}}</div>
+					<div class="profile-card-inf__txt">{{UserInfo.gender}}</div>
 				</div>
 			
 				<div class="profile-card-inf__item">
 					<div class="profile-card-inf__title">年龄</div>
-					<div class="profile-card-inf__txt">{{age}}</div>
+					<div class="profile-card-inf__txt">{{UserInfo.age}}</div>
 				</div>
 			
 				<div class="profile-card-inf__item">
-					<div class="profile-card-inf__title">身高</div>
-					<div class="profile-card-inf__txt">{{height}}cm</div>
-				</div>
-			
-				<div class="profile-card-inf__item">
-					<div class="profile-card-inf__title">体重</div>
-					<div class="profile-card-inf__txt">{{weight}}kg</div>
+					<div class="profile-card-inf__title">近期检测分数</div>
+					<div class="profile-card-inf__txt">160cm</div>
 				</div>
 			</div>
 		
 			
 			<div class="profile-card-ctr">
-				<button class="profile-card__button button--blue js-message-btn">修改</button>
+				<button class="profile-card__button button--blue js-message-btn">注销</button>
 				<button class="profile-card__button button--orange js-return">退出</button>
 			</div>
 		</div>
@@ -90,15 +79,15 @@
  
   </defs>
 </svg>
+
     <div id="out">
 	    <div id="first"><a href="history"><img src="/static/img/history.png"></a></div>
 	    <div id="second"><a href="detect"><img src="/static/img/scan.png"></a></div>
 	    <div id="third"><a href="login"><img src="/static/img/set.png"></a></div>
 	</div>
 	<div id="nav">
-	   <a href=".."> <img src="/static/img/home.png"></a>
+	   <a href="../"> <img src="/static/img/home.png"></a>
 	</div>
-
 
 <script  src="/static/js/card.js"></script>
 <script  src="/static/js/circle.js"></script>
