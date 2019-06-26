@@ -39,14 +39,23 @@
 .register_sexnav .col-xs-4{text-align: right; height: 40px; line-height: 40px; font-size: 20px; font-weight: bold;}
 .register_sexnav .col-xs-6{height: 40px; padding: 0px;}
 #sex_r{font-size: 12px; height: 40px; outline: 0px; border-radius: 10px; border: 1px solid #CCCCCC; width: 95%;}
-.register_heightnav{margin-top: 30px;}
-.register_heightnav .col-xs-4{text-align: right; height: 40px; line-height: 40px; font-size: 20px; font-weight: bold;}
-.register_heightnav .col-xs-6{height: 40px; padding: 0px;}
-#height_r{font-size: 12px; height: 40px; outline: 0px; border-radius: 10px; border: 1px solid #CCCCCC; width: 95%;}
-.register_weightnav{margin-top: 30px;}
-.register_weightnav .col-xs-4{text-align: right; height: 40px; line-height: 40px; font-size: 20px; font-weight: bold;}
-.register_weightnav .col-xs-6{height: 40px; padding: 0px;}
-#weight_r{font-size: 12px; height: 40px; outline: 0px; border-radius: 10px; border: 1px solid #CCCCCC; width: 95%;}
+.register_numbernav{margin-top: 30px;}
+.register_numbernav .col-xs-4{text-align: right; height: 40px; line-height: 40px; font-size: 20px; font-weight: bold;}
+.register_numbernav .col-xs-6{height: 40px; padding: 0px;}
+#number_r{font-size: 12px; height: 40px; outline: 0px; border-radius: 10px; border: 1px solid #CCCCCC; width: 95%;}
+.register_psdnav{margin-top: 30px;}
+.register_psdnav .col-xs-4{text-align: right; height: 40px; line-height: 40px; font-size: 20px; font-weight: bold;}
+.register_psdnav .col-xs-6{height: 40px; padding: 0px;}
+#psd_r{height: 40px; font-size: 12px; outline: 0px; border-radius: 10px; border: 1px solid #CCCCCC; width: 95%;}
+.register_affirm{margin-top: 30px;}
+.register_affirm .col-xs-4{text-align: right; height: 40px; line-height: 40px; font-size: 20px; font-weight: bold; }
+.register_affirm .col-xs-6{height: 40px; padding: 0px;}
+#affirm_psd{height: 40px; font-size: 12px; outline: 0px; border-radius: 10px; border: 1px solid #CCCCCC; width: 95%; }
+.register_btn_div{text-align: center; margin-top: 30px; padding-left: 50px;}
+#register{outline: 0px; border: 0px; width: 200px; height: 40px; border-radius: 10px; color: white; font-weight: bold; font-size: 20px;}
+.barter_register{text-align: center; position: absolute; bottom: 0;margin-bottom: 10px;}
+.barter_registerBtn{border: 0px; background: transparent; outline: 0px;}
+.sub_btn:hover{background: #31B0D5;}
 .register_placenav{margin-top: 30px;}
 .register_placenav .col-xs-4{text-align: right; height: 40px; line-height: 40px; font-size: 20px; font-weight: bold;}
 .register_placenav .col-xs-6{height: 40px; padding: 0px;}
