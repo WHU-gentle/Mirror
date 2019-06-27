@@ -170,7 +170,7 @@ function barter_btn(bb) {
 
 <div class="register_body">
 	<div class="col-xs-12 register_title">注册</div>
-	<form action="register" class="register" method="post">
+	<form action="/register/" class="register" method="post">
 	{% csrf_token %}
 		<div class="nav">
 			<div class="nav register_nav">
@@ -192,7 +192,7 @@ function barter_btn(bb) {
 					手机号:
 				</div>
 				<div class="col-xs-6">
-					<input type="text" name="id" id="number_r" value="" placeholder="&nbsp;&nbsp;手机号" onBlur="javascript:ok_or_errorByRegister(this)" />
+					<input type="text" name="id_r" id="number_r" value="" placeholder="&nbsp;&nbsp;手机号" onBlur="javascript:ok_or_errorByRegister(this)" />
 				</div>
 				<div class="col-xs-1 ok_gou">
 					√

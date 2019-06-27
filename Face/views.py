@@ -15,23 +15,22 @@ def index(request):
 def login(request):
 
     if request.session.get('is_login',None):
-        user = models.User.objects.get(name=request.session['user_name'])
+        user = models.UserInfo.objects.get(uid=request.session['user_id'])
         return render(request,'Face/info.html',{'UserInfo': user})
 
     #在没有session的条件下登录时创建session
     if request.method == "POST":
-        username = request.POST.get('user')
+        userID = request.POST.get('id')
         password = request.POST.get('pwd')
-        if username and password:#用户名和密码都不为空
-            username = username.strip()
-            #后期用于进行密码格式相关验证
+        if userID and password:#用户名和密码都不为空
+            userID = userID.strip()
             try:
-                user = models.User.objects.get(name=username)
+                user = models.UserInfo.objects.get(uid=userID)
                 # 验证密码
-                if user.password == password:
+                if user.passwd == password:
                     request.session['is_login']=True
                     # 将用户名作为session标记
-                    request.session['user_name']=user.name
+                    request.session['user_id']=user.uid
                     return render(request,'Face/info.html', {'UserInfo': user})
             except:
                 return render(request,'Face/login.html')
@@ -40,14 +39,15 @@ def login(request):
 #注册
 def register(request):
     if request.method=="POST":
-        new_user = models.User.objects.create()
+        new_user = models.UserInfo.objects.create()
         new_user.name = request.POST.get('name_r')
+        new_user.uid = request.POST.get('id_r')
         if request.POST.get('psd_r')==request.POST.get('affirm_psd'):
             #密码一致
-            new_user.password = request.POST.get('psd_r')
-        new_user.gender = request.POST.get('sex_r')
-        new_user.birth = request.POST.get('birthday_r')
-        new_user.save()
+            new_user.passwd = request.POST.get('psd_r')
+            new_user.gender = request.POST.get('sex_r')
+            new_user.birthday = request.POST.get('birthday_r')
+            new_user.save()
     return render(request,'Face/login.html')
 
 #注销
@@ -136,7 +136,7 @@ def result(request):
 
     #Table1 皮肤分析历史
     new_skin = models.UserSkin.objects.create()
-    new_skin.name = request.session['user_name']
+    new_skin.uid = request.session['user_id']
     #年轻度
     age_ = data['age']['result']
     if age_>=0 and age_<=25:
