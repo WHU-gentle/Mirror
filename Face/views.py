@@ -66,22 +66,23 @@ def detect(request):
 #显示结果   
 def result(request):
     #所用参数赋值
-    '''type = 504205
+    type = 504205
     url = 'https://api.yimei.ai/v1/api/face/analysis/' + str(type)
     client_id = "f0dbe1dac09c2ae9";
     client_secret = "de7015dc94e87829b1552a639e6c9c13";
     a = client_id + ':' + client_secret
     #保存图片到本地
     cur_dir = os.path.dirname(__file__)#获取当前目录
-    file_path = os.path.join(cur_dir,'../static/p.jpg')
+    file_path = os.path.join(cur_dir,'../img/p.jpg')
     img = request.POST['pic']
     imagedata = decode_base64(img[len("data:image/jpg;base64,"):])
     file = open(file_path,'wb')
     file.write(imagedata)
     file.close()
+    '''
     bodys = {"detect_types": type}
     #输入图片的URL
-    bodys['image'] = "localhost:8000/static/p.jpg"
+    bodys['image'] = "localhost:8080/img/p.jpg"
     headers = {'Authorization': 'Basic ' + str(base64.b64encode(a.encode("utf-8")), "utf-8"),
                "Content-Type": 'application/x-www-form-urlencoded; charset=UTF-8', "Host": "api.yimei.ai",
                "Accept": "application/json"}
@@ -89,8 +90,8 @@ def result(request):
     response = requests.post(url, data=bodys, headers=headers)
     #对返回内容进行解码
     req_con = response.content.decode('utf-8')
-    data = JSONDecoder().decode(req_con)
-    #对返回结果进行判断'''
+    data = JSONDecoder().decode(req_con)'''
+    #对返回结果进行判断
 
 
     #测试数据
