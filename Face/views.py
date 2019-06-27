@@ -132,6 +132,7 @@ def result(request):
    'pockmark': {'filename': 'prd-apiout1/2019/0427/1f6f84374fed35d7a80113ff4b8d2505-2113201.jpg', 'count': 2, 'score': 96},
    'id': 'a616e7364557b6f9975f2aca1b7b996c'}
 
+
     #根据返回数据存储数据库
 
     #Table1 皮肤分析历史
@@ -176,7 +177,14 @@ def result(request):
     new_skin.totalScore = (new_skin.healthScore+new_skin.oilScore+new_skin.youngScore+new_skin.softScore)/4
     new_skin.save()
     data['Userskin']=new_skin
-    return render(request,'Face/scan.html',data)
+
+    cur_dir = os.path.dirname(__file__)  # 获取当前目录
+    sugg_path = os.path.join(cur_dir, './static/suggestion.json')
+    with open(sugg_path) as f:
+        suggest = json.load(f)
+    for key, value in suggest.items():
+        data[key] = value
+    return render(request,'Face/scan.html', data)
 
 #显示历史记录
 def history(request):
