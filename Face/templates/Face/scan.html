@@ -55,12 +55,12 @@
 <div id="index">
   <div class="block2">
 	<h1>皱纹</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{wrinkle.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{wrinkle.filename}} ></div>
 	<h1>{{wrinkle.score}}</h1>
 	</div>
 	<div class="block2">
 	<h1>肤色</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{skin_type.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{skin_type.filename}} ></div>
 	<div id="advice">
 	<h2 align="left" >
 	&nbsp;&nbsp;
@@ -78,17 +78,17 @@
 	</div>
 		<div class="block2">
 	<h1>肤质</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{skin_type.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{skin_type.filename}} ></div>
 	<h1>{{skin_type.score}}</h1>
 	</div>
 		<div class="block2">
 	<h1>水分</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{moisture.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{moisture.filename}} ></div>
 	<h1>{{moisture.score}}</h1>
 	</div>
 		<div class="block2">
 	<h1>粗糙度</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{roughness.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{roughness.filename}} ></div>
 	<h1>{{roughness.score}}</h1>
 		<div id="advice">
 	<h2 align="left" >
@@ -121,7 +121,7 @@
 <div id="problems">
 	<div class="block2">
 	<h1>出油情况</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{skin_type.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{skin_type.filename}} ></div>
 	<h1>{{Userskin.oilScore}}</h1>
 	<div id="advice">
 	<h2 align="left" >
@@ -147,7 +147,7 @@
 	</div>
     <div class="block2">
 	<h1>黑眼圈</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{dark_circle.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{dark_circle.filename}} ></div>
 	<h1>{{dark_circle.result}}</h1>
 	<div id="advice">
 	<h2 align="left" >
@@ -173,7 +173,7 @@
 	</div>
     <div class="block2">
 	<h1>痘痘</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{pockmark.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{pockmark.filename}} ></div>
 	<h1>{{pockmark.score}}</h1>
 	<div id="advice">
 	<h2 align="left" >
@@ -199,7 +199,7 @@
 	</div>
     <div class="block2">
 	<h1>黑头</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{blackhead.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{blackhead.filename}} ></div>
 	<h1>{{blackhead.score}}</h1>
 	<div id="advice">
 	<h2 align="left" >
@@ -225,7 +225,7 @@
 	</div>
 	<div class="block2">
 	<h1>毛孔</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{pore.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{pore.filename}} ></div>
 	<h1>{{pore.score}}</h1>
    <div id="advice">
 	<h2 align="left" >
@@ -349,9 +349,9 @@ ring.setOption({
 }) ;
 
 var ring = echarts.init(document.getElementById('ring1'));
-var data4={{new_skin.youngScore|safe}};    //年轻度分数
-var data5={{new_skin.healthScore|safe}};    // 健康度分数
-var data6={{new_skin.oilScore|safe}};    //油干性分数
+var data4={{Userskin.youngScore|safe}};    //年轻度分数
+var data5={{Userskin.healthScore|safe}};    // 健康度分数
+var data6={{Userskin.oilScore|safe}};    //油干性分数
 var value=[];
 value.push(data4);
 value.push(data5);

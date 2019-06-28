@@ -90,48 +90,44 @@ def result(request):
     response = requests.post(url, data=bodys, headers=headers)
     #对返回内容进行解码
     req_con = response.content.decode('utf-8')
-    data = JSONDecoder().decode(req_con)'''
+    data = JSONDecoder().decode(req_con)
+    '''
     #对返回结果进行判断
 
 
     #测试数据
     data={'code': 0,
 'error_detect_types': 0,
-'filename': 'prd-api1/2019/0427/ddfbb4fcb4ebad1cd7e408dc92b11fe5-2113336.jpg',
+'filename': 'prd-api1/2019/0628/abc16a09674213c00c608ef83d19d4d9-5699102.jpg',
 'detect_types': '504205',
-'age': {'result': 31},
- 'detect_type': 131072,
-  'blackhead': {'filename': 'prd-apiout1/2019/0427/d88f41e87bf6fdb9e02a7e6012b1eb52-2113337.jpg',
-                 'count': 12,
-                 'score': 88},
-  'color': {'result': 'ziran'},
-  'roughness': {'filename': 'prd-apiout1/2019/0427/c915ad19e7b96613efca346c5a9d9096-2113338.jpg',
-                'score': 96},
-  'moisture': {'filename': 'prd-apiout1/2019/0427/eee90c2c3ed3059799396ab6c29cf87b-2113198.jpg',
-                'result': '0.348',
-                'score': 86,
-                 'class': [{'result': 0.331, 'class': 'left_cheek'},
-                             {'result': 0.36, 'class': 'right_cheek'},
-                             {'result': 0.397, 'class': 'forehead'},
-                             {'result': 0.287, 'class': 'chin'}]},
-  'skin_type': {'filename': 'prd-apiout1/2019/0427/8389afca8e7c18ae901d3b3a6e587edf-2113241.jpg',
-                'result': '0.831',
-                'class': [{'result': 0.882, 'class': 'left_cheek'},
-                            {'result': 0.509, 'class': 'right_cheek'},
-                            {'result': 1, 'class': 'forehead'},
-                             {'result': 0.801, 'class': 'chin'}],
-                'oily': '1.000000', 'dry': '0.000000', 'mixed': '0.000000', 'score': 40},
-   'appearance': {'score': 83},
-   'pore': {'filename': 'prd-apiout1/2019/0427/c21cbff09c91c6e72a4f9ed1ee4a05dd-2113339.jpg', 'count': 403, 'score': 79},
-   'wrinkle': {'filename': 'prd-apiout1/2019/0427/24719d4725c9d16a2fdb88d29945f695-2113199.jpg', 'count': 6, 'score': 82,
-                'class': [{'count': 1, 'class': 'forehead'},
-                            {'count': 2, 'class': 'eyecorner'},
-                            {'count': 2, 'class': 'nasolabial'},
-                            {'count': 1, 'class': 'crowfeet'},
-                             {'count': 0, 'class': 'glabella'}]},
-   'dark_circle': {'filename': 'prd-api1/2019/0427/ddfbb4fcb4ebad1cd7e408dc92b11fe5-2113336.jpg', 'result': 0},
-   'pockmark': {'filename': 'prd-apiout1/2019/0427/1f6f84374fed35d7a80113ff4b8d2505-2113201.jpg', 'count': 2, 'score': 96},
-   'id': 'a616e7364557b6f9975f2aca1b7b996c'}
+'age': {'result': 19},
+'detect_type': 131072,
+'color': {'result': 'baixi'},
+'blackhead': {'filename': 'prd-apiout1/2019/0628/18499943987706adb45e6787dd1d868d-5698935.jpg', 'count': 3, 'score': 97},
+'skin_type': {'filename': 'prd-apiout1/2019/0628/6317f1b7ca992a70a7c5d0cadf22c6c4-5699103.jpg', 'result': '0.765',
+               'class': [{'result': 0.261, 'class': 'left_cheek'},
+                         {'result': 1, 'class': 'right_cheek'},
+                         {'result': 1, 'class': 'forehead'},
+                         {'result': 0.233, 'class': 'chin'}],
+               'oily': '1.000000', 'dry': '0.000000', 'mixed': '0.000000', 'score': 45},
+'moisture': {'filename': 'prd-apiout1/2019/0628/1b9956b9f34663703437a7ca19215360-5698936.jpg', 'result': '0.484', 'score': '89',
+              'class': [{'result': 0.405, 'class': 'left_cheek'},
+                        {'result': 0.643, 'class': 'right_cheek'},
+                        {'result': 0.503, 'class': 'forehead'},
+                        {'result': 0.312, 'class': 'chin'}]},
+'roughness': {'filename': 'prd-apiout1/2019/0628/10e78d1f5b4e2178dd544603979c745b-5698937.jpg', 'score': 80},
+'appearance': {'score': 86},
+'pore': {'filename': 'prd-apiout1/2019/0628/4a260193e23b95bcc4eb46a9f949702d-5699030.jpg', 'count': 79, 'score': 96},
+'wrinkle': {'filename': 'prd-apiout1/2019/0628/ae5fc0af9f39fbb38e4170fdf8aba522-5699031.jpg', 'count': 2, 'score': 95,
+              'class': [{'count': 0, 'class': 'forehead'},
+                        {'count': 2, 'class': 'eyecorner'},
+                        {'count': 0, 'class': 'nasolabial'},
+                        {'count': 0, 'class': 'crowfeet'},
+                         {'count': 0, 'class': 'glabella'}]},
+'dark_circle': {'filename': 'prd-api1/2019/0628/abc16a09674213c00c608ef83d19d4d9-5699102.jpg', 'result': 0},
+'pockmark': {'filename': 'prd-apiout1/2019/0628/83162ff1be216e8e2983da43cc63b2fb-5699105.jpg', 'count': 2, 'score': 96},
+'face_box': {'x0': 68, 'y0': 69, 'x1': 385, 'y1': 537},
+'id': '2df348a2289d5dd0b292d7d421fb7450'}
 
 
     #根据返回数据存储数据库
@@ -151,7 +147,7 @@ def result(request):
         y = 70
     else:
         y=60
-    new_skin.youngScore = y*0.5+data['wrinkle']['score']*0.5
+    new_skin.youngScore = int(y*0.5+data['wrinkle']['score']*0.5)
     #健康度
     darkCir = data['dark_circle']['result']
     if darkCir>=0 and darkCir<=25:
@@ -167,15 +163,14 @@ def result(request):
     health = data['pockmark']['score']*(1/3)+data['blackhead']['score']*(1/3)+d*(1/3)
     if data['color']['result']=='anchen':
         health = health-10
-    new_skin.healthScore = health
+    new_skin.healthScore = int(health)
     #油干性
-    oil = data['moisture']['score']*0.5+data['skin_type']['score']*0.5
-    new_skin.oilScore = oil
+    oil = int(data['moisture']['score'])*0.5+data['skin_type']['score']*0.5
+    new_skin.oilScore = int(oil)
     #细腻度
-    new_skin.softScore = data['roughness']['score']*0.5+data['pore']['score']*0.5
+    new_skin.softScore = int(data['roughness']['score']*0.5+data['pore']['score']*0.5)
     #总分
-    new_skin.totalScore = 100
-    new_skin.totalScore = (new_skin.healthScore+new_skin.oilScore+new_skin.youngScore+new_skin.softScore)/4
+    new_skin.totalScore = int((new_skin.healthScore+new_skin.oilScore+new_skin.youngScore+new_skin.softScore)/4)
     new_skin.save()
     data['Userskin']=new_skin
 
