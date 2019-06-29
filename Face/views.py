@@ -79,6 +79,7 @@ def result(request):
     file = open(file_path,'wb')
     file.write(imagedata)
     file.close()
+    
     bodys = {"detect_types": type}
     #输入图片的URL
     bodys['image'] = "101.132.177.244:8080/img/p.jpg"
