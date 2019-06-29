@@ -20,33 +20,32 @@
 <div class="block1">
 <div id="ring1" style="width:700px;height:164px; font-size: 20px;"></div>
 <div id="advice">
-	<h2 align="left" >
-	&nbsp;&nbsp;您的皮肤健康度:
-	{% if Userskin.healthscore >= 80 %}
+	<h2 align="center" >
+	您的皮肤健康度:
+	{% if Userskin.healthScore >= 80 %}
 		{{pretty}}
-	{% elif Userskin.healthscore >= 60 %}
+	{% elif Userskin.healthScore >= 60 %}
 		{{moderate}}
 	{% else %}
 		{{bad}}	
 	{% endif %}
-	,<br>油干性:
-	{% if Userskin.oilscore >= 80 %}
+	<br>油干性:
+	{% if Userskin.oilScore >= 80 %}
 		{{pretty}}
-	{% elif Userskin.oilscore >= 60 %}
+	{% elif Userskin.oilScore >= 60 %}
 		{{moderate}}
 	{% else %}
 		{{bad}}	
 	{% endif %}
-	,<br>
-细腻度:
-	{% if Userskin.softscore >= 80 %}
+	<br>
+	细腻度:
+	{% if Userskin.softScore >= 80 %}
 		{{pretty}}
-	{% elif Userskin.softscore >= 60 %}
+	{% elif Userskin.softScore >= 60 %}
 		{{moderate}}
 	{% else %}
 		{{bad}}	
 	{% endif %}
-	。
 	</h2>
 </div>
 </div>
@@ -55,15 +54,15 @@
 <div id="index">
   <div class="block2">
 	<h1>皱纹</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{wrinkle.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{wrinkle.filename}} ></div>
 	<h1>{{wrinkle.score}}</h1>
 	</div>
 	<div class="block2">
 	<h1>肤色</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{skin_type.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{skin_type.filename}} ></div>
 	<div id="advice">
 	<h2 align="left" >
-	&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;
 	{% if color.result == "toubai" %}
 		{{penetrating_white}}
 	{% elif color.result == "baixi" %}
@@ -78,21 +77,21 @@
 	</div>
 		<div class="block2">
 	<h1>肤质</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{skin_type.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{skin_type.filename}} ></div>
 	<h1>{{skin_type.score}}</h1>
 	</div>
 		<div class="block2">
 	<h1>水分</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{moisture.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{moisture.filename}} ></div>
 	<h1>{{moisture.score}}</h1>
 	</div>
 		<div class="block2">
 	<h1>粗糙度</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{roughness.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{roughness.filename}} ></div>
 	<h1>{{roughness.score}}</h1>
 		<div id="advice">
-	<h2 align="left" >
-	&nbsp;&nbsp;你属于:
+	<h2 align="center" >
+	你属于:
 	{% if Userskin.softScore >= 90 %}
 		{{shelling}}
 	{% elif Userskin.softScore >= 80 %}
@@ -102,8 +101,10 @@
 	{% else %}
 		{{fry}}	
 	{% endif %}
-	，<br>
-
+	</h2>
+	<br>
+	<h2 align="left">
+	&nbsp;&nbsp;&nbsp;&nbsp;
 	{% if Userskin.softScore >= 90 %}
 		{{shelling_advice}}
 	{% elif Userskin.softScore >= 80 %}
@@ -121,11 +122,11 @@
 <div id="problems">
 	<div class="block2">
 	<h1>出油情况</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{skin_type.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{skin_type.filename}} ></div>
 	<h1>{{Userskin.oilScore}}</h1>
 	<div id="advice">
-	<h2 align="left" >
-	&nbsp;&nbsp;当前出油状态为:
+	<h2 align="center" >
+	当前出油状态为:
 	{% if Userskin.oilScore >= 90 %}
 		{{taiyou}}
 	{% elif Userskin.oilScore >= 80 %}
@@ -133,8 +134,10 @@
 	{% else %}
 		{{taigan}}
 	{% endif %}
-	，<br>
-
+	<br>
+	</h2>
+	<h2 align="left">
+	&nbsp;&nbsp;&nbsp;&nbsp;
 	{% if Userskin.oilScore >= 90 %}
 		{{oil}}
 	{% elif Userskin.oilScore >= 80 %}
@@ -147,11 +150,11 @@
 	</div>
     <div class="block2">
 	<h1>黑眼圈</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{dark_circle.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{dark_circle.filename}} ></div>
 	<h1>{{dark_circle.result}}</h1>
 	<div id="advice">
-	<h2 align="left" >
-	&nbsp;&nbsp;黑眼圈严重程度:
+	<h2 align="center" >
+	黑眼圈严重程度:
 	{% if dark_circle.result >= 80 %}
 		{{severe}}
 	{% elif dark_circle.result >= 60 %}
@@ -159,8 +162,10 @@
 	{% else %}
 		{{light}}
 	{% endif %}
-	，<br>
-
+		</h2>
+	<br>
+		<h2 align="left">
+		&nbsp;&nbsp;&nbsp;&nbsp;
 	{% if dark_circle.result >= 80 %}
 		{{severe_darkcricle}}
 	{% elif dark_circle.result >= 60 %}
@@ -173,11 +178,11 @@
 	</div>
     <div class="block2">
 	<h1>痘痘</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{pockmark.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{pockmark.filename}} ></div>
 	<h1>{{pockmark.score}}</h1>
 	<div id="advice">
-	<h2 align="left" >
-	&nbsp;&nbsp;严重程度:
+	<h2 align="center" >
+	严重程度:
 	{% if pockmark.score >= 80 %}
 		{{light}}
 	{% elif pockmark.score >= 60 %}
@@ -185,8 +190,10 @@
 	{% else %}
 		{{severe}}
 	{% endif %}
-	，<br>
-
+		</h2>
+	<br>
+	<h2 align="left">
+	&nbsp;&nbsp;&nbsp;&nbsp;
 	{% if pockmark.score >= 80 %}
 		{{light_pockmark}}
 	{% elif pockmark.score >= 60 %}
@@ -199,11 +206,11 @@
 	</div>
     <div class="block2">
 	<h1>黑头</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{blackhead.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{blackhead.filename}} ></div>
 	<h1>{{blackhead.score}}</h1>
 	<div id="advice">
-	<h2 align="left" >
-	&nbsp;&nbsp;黑头个数:{{blackhead.count}}个,<br>
+	<h2 align="center" >
+	黑头个数:{{blackhead.count}}个<br>
 	黑头程度:
 	{% if blackhead.score >= 80 %}
 		{{light}}
@@ -212,7 +219,9 @@
 	{% else %}
 		{{severe}}
 	{% endif %}
-	，<br>
+		</h2>
+		<br>
+		<h2 align="left">
 	{% if blackhead.score >= 80 %}
 		{{small_blackhead}}
 	{% elif blackhead.score >= 60 %}
@@ -225,32 +234,32 @@
 	</div>
 	<div class="block2">
 	<h1>毛孔</h1>
-	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{pore.filename}} ></div>
+	<div class="img"><img src=https://api.yimei.ai/fileSvr/get/${{pore.filename}} ></div>
 	<h1>{{pore.score}}</h1>
    <div id="advice">
-	<h2 align="left" >
-	&nbsp;&nbsp;毛孔：
+	<h2 align="center" >
+	毛孔：
 	{% if pore.score >= 80 %}
 		{{small}}
 	{% elif pore.score >= 60 %}
 		{{moderate}}
 	{% else %}
 		{{thick}}
-	{% endif %}。
+	{% endif %}
 	</h2>
 	</div>
     </div>  
       
        <div id="out">
-	    <div id="first"><a href="history"><img src="/static/img/history.png"></a></div>
-	    <div id="second"><a href="detect"><img src="/static/img/scan.png"></a></div>
-	    <div id="third"><a href="info"><img src="/static/img/set.png"></a></div>
+	    <div id="first"><a href="history"><img src="../static/img/history.png"></a></div>
+	    <div id="second"><a href="detect"><img src="../static/img/scan.png"></a></div>
+	    <div id="third"><a href="info"><img src="../static/img/set.png"></a></div>
 	</div>
 	
 	<div id="nav">
-	   <a href="../"> <img src="/static/img/home.png"></a>
+	   <a href="home.html"> <img src="../static/img/home.png"></a>
 	</div>
-	
+		
 <script type="text/javascript" src="/static/js/jquery-1.7.2-min.js"></script>
 <script type="text/javascript" src="/static/js/echarts.min.js"></script>
 <script>
