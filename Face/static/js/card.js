@@ -18,5 +18,5 @@ var messageBox = document.querySelector('.js-message');
 
   returnBtn.addEventListener('click',function (e) {
       e.preventDefault();
-      window.location.replace("") ;
+      window.location.replace("../") ;
   });
