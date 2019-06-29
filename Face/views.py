@@ -82,7 +82,7 @@ def result(request):
     
     bodys = {"detect_types": type}
     #输入图片的URL
-    bodys['image'] = "101.132.177.244:8080/img/p.jpg"
+    bodys['image'] = "101.132.177.244:8080/static/p.jpg"
     headers = {'Authorization': 'Basic ' + str(base64.b64encode(a.encode("utf-8")), "utf-8"),
                "Content-Type": 'application/x-www-form-urlencoded; charset=UTF-8', "Host": "api.yimei.ai",
                "Accept": "application/json"}
