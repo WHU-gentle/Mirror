@@ -79,10 +79,9 @@ def result(request):
     file = open(file_path,'wb')
     file.write(imagedata)
     file.close()
-    '''
     bodys = {"detect_types": type}
     #输入图片的URL
-    bodys['image'] = "localhost:8080/img/p.jpg"
+    bodys['image'] = "101.132.177.244:8080/img/p.jpg"
     headers = {'Authorization': 'Basic ' + str(base64.b64encode(a.encode("utf-8")), "utf-8"),
                "Content-Type": 'application/x-www-form-urlencoded; charset=UTF-8', "Host": "api.yimei.ai",
                "Accept": "application/json"}
@@ -91,12 +90,11 @@ def result(request):
     #对返回内容进行解码
     req_con = response.content.decode('utf-8')
     data = JSONDecoder().decode(req_con)
-    '''
     #对返回结果进行判断
 
 
     #测试数据
-    data={'code': 0,
+    '''data={'code': 0,
 'error_detect_types': 0,
 'filename': 'prd-api1/2019/0628/abc16a09674213c00c608ef83d19d4d9-5699102.jpg',
 'detect_types': '504205',
@@ -127,7 +125,7 @@ def result(request):
 'dark_circle': {'filename': 'prd-api1/2019/0628/abc16a09674213c00c608ef83d19d4d9-5699102.jpg', 'result': 0},
 'pockmark': {'filename': 'prd-apiout1/2019/0628/83162ff1be216e8e2983da43cc63b2fb-5699105.jpg', 'count': 2, 'score': 96},
 'face_box': {'x0': 68, 'y0': 69, 'x1': 385, 'y1': 537},
-'id': '2df348a2289d5dd0b292d7d421fb7450'}
+'id': '2df348a2289d5dd0b292d7d421fb7450'}'''
 
 
     #根据返回数据存储数据库
