@@ -16,8 +16,6 @@
 <p>分数</p>
 <div class="block1">
 <div id="ring" style="width:700px;height:164px; font-size: 20px;"></div>
-</div>
-<div class="block1">
 <div id="ring1" style="width:700px;height:164px; font-size: 20px;"></div>
 <div id="advice">
 	<h2 align="center" >
@@ -29,7 +27,7 @@
 	{% else %}
 		{{bad}}	
 	{% endif %}
-	<br>油干性:
+	，油干性:
 	{% if Userskin.oilScore >= 80 %}
 		{{pretty}}
 	{% elif Userskin.oilScore >= 60 %}
@@ -37,7 +35,7 @@
 	{% else %}
 		{{bad}}	
 	{% endif %}
-	<br>
+	，
 	细腻度:
 	{% if Userskin.softScore >= 80 %}
 		{{pretty}}
@@ -45,7 +43,7 @@
 		{{moderate}}
 	{% else %}
 		{{bad}}	
-	{% endif %}
+	{% endif %}。
 	</h2>
 </div>
 </div>
@@ -210,7 +208,7 @@
 	<h1>{{blackhead.score}}</h1>
 	<div id="advice">
 	<h2 align="center" >
-	黑头个数:{{blackhead.count}}个<br>
+	黑头个数:{{blackhead.count}}个，<br>
 	黑头程度:
 	{% if blackhead.score >= 80 %}
 		{{light}}
