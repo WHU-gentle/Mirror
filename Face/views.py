@@ -73,7 +73,7 @@ def result(request):
     a = client_id + ':' + client_secret
     #保存图片到本地
     cur_dir = os.path.dirname(__file__)#获取当前目录
-    file_path = os.path.join(cur_dir,'../img/p.jpg')
+    file_path = os.path.join(cur_dir,'../static/p.jpg')
     img = request.POST['pic']
     imagedata = decode_base64(img[len("data:image/jpg;base64,"):])
     file = open(file_path,'wb')
