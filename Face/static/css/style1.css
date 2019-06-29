@@ -28,16 +28,19 @@ img { border: none; }
 
 #myclock{
 	color:white;
-	width:700px;
-	height:700px; 
-	top: 50%; 
-	left: 50%; 
-	margin-top: -150px; 
-	margin-left:-130px;
-	position:fixed;
-	font-size: 30px;
+	width:100px;
+	height:10px;  
+	margin-top: 5px; 
+	margin-left:10px;
+	font-size: 10px;
 }
 
+#logo{ 
+	width:30px;
+	height:30px;
+	margin-top: 0px; 
+	margin-left:35px;
+}
 
 
 #nav {
