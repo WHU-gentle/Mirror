@@ -5,7 +5,7 @@
 	 overflow-x:hidden;
 }
 body{font-size: 20px; color:#000;user-select:none;-webkit-user-select:none;-webkit-text-size-adjust:none;background-color:#fff;}
-html,body {height:100%;}
+html,body {height:100%;width:100%}
 *{ font-family:"微软雅黑","华文细黑",Arial, Helvetica, sans-serif;}
 a,input,div,textarea{outline:none;}
 html,body,h1,h2,h3,h4,h5,h6,p,dl,dd,ol,ul,th,td,form,fieldset,input,button,textarea,a{margin:0;padding:0}
@@ -25,6 +25,7 @@ body{
 	font-size:25px;
 	margin-top: 50px;
 	font-weight: 500;
+	color:white;
 }
 #code{
 	margin: auto;
@@ -35,11 +36,6 @@ body{
 {
 	margin: auto;
 	width:900px;
-}
-#result{
-	background-color:white;
-	width:900px;
-	margin:auto;
 }
 
 table
@@ -63,41 +59,47 @@ table td{
 }
 
  h1{
-	color: #3d3d3d;
+	color: white;
 	font-size: 30px;
 	margin:auto;
 	padding: 10px 0 10px 0;
 	 text-align: center;
 }
 
-#index img,#problems img
-{
-	width:500px;
-	height:500px;
-	margin:auto;
-}
 
-.img
+.img 
 {
 	margin: auto;
-	margin-left:100px;
 	margin-bottom: 30px;
+	overflow-y:hidden;
+		width:250px;
+	height:250px;
+
 }
 
+.img img{
+	width:250px;
+	height:250px;
+	overflow-y:hidden;
+	margin: auto;
+	
+}
 .block1{
 	margin: auto;
-	width:700px;
+	width:640px;
 	padding:10px 50px 10px 50px;
-	background-color:aliceblue;
+	background-color:black;
 	border-radius:10px;
+
 }
 .block2{
 	margin: auto;
-	width:700px;
+	width:650px;
 	margin-top: 20px;
 	padding:10px 50px 20px 50px;
-	background-color:aliceblue;
+	background-color:black;
 	border-radius:10px;
+	border:0.8spx solid white;
 }
 
 
@@ -111,7 +113,7 @@ input{
 }
 p{
 	font-weight: bold;
-	color: #3d3d3d;
+	color: white;
 	font-size: 40px;
 	text-align: center;
 	padding: 60px 0 20px 0;
@@ -128,7 +130,7 @@ p{
 }
 
 #text{
-	background-color:aliceblue;
+	background-color:awhite;
 	border: none;
 	margin: 0 48% 0 50%;
 	text-align: center;
