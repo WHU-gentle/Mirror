@@ -1,11 +1,11 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-import requests
+import requests, base64
 from json import JSONDecoder
-import base64
 import os
 from . import models
 import json
+from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 # Create your views here.
 #主页
@@ -65,12 +65,6 @@ def detect(request):
     
 #显示结果   
 def result(request):
-    #所用参数赋值
-    type = 504205
-    url = 'https://api.yimei.ai/v1/api/face/analysis/' + str(type)
-    client_id = "f0dbe1dac09c2ae9";
-    client_secret = "de7015dc94e87829b1552a639e6c9c13";
-    a = client_id + ':' + client_secret
     #保存图片到本地
     cur_dir = os.path.dirname(__file__)#获取当前目录
     file_path = os.path.join(cur_dir,'../static/p.jpg')
@@ -79,70 +73,40 @@ def result(request):
     file = open(file_path,'wb')
     file.write(imagedata)
     file.close()
-    
-    bodys = {"detect_types": type}
-    #输入图片的URL
-    bodys['image'] = "101.132.177.244:8080/static/p.jpg"
-    headers = {'Authorization': 'Basic ' + str(base64.b64encode(a.encode("utf-8")), "utf-8"),
-               "Content-Type": 'application/x-www-form-urlencoded; charset=UTF-8', "Host": "api.yimei.ai",
+
+    # 所用参数赋值
+    type = 504205
+    url = 'https://api.yimei.ai/v1/api/face/analysis/' + str(type)
+    client_id = "f0dbe1dac09c2ae9"
+    client_secret = "de7015dc94e87829b1552a639e6c9c13"
+    a = client_id + ':' + client_secret
+    # 打开图片 自动生成可用于上传的数据
+    f = {"image": (file_path, open(file_path, 'rb'), "image/jpg"), "detect_types": str(type)}
+    img = MultipartEncoder(f)
+    #请求头
+    headers = {"Authorization": 'Basic ' + str(base64.b64encode(a.encode("utf-8")), "utf-8"),
+               "Content-Type": img.content_type,
+               "Host": "api.yimei.ai",
                "Accept": "application/json"}
     #发送请求
-    response = requests.post(url, data=bodys, headers=headers)
-    #对返回内容进行解码
+    response = requests.post(url, data=img, headers=headers)
+    # 解码
     req_con = response.content.decode('utf-8')
     data = JSONDecoder().decode(req_con)
-    #对返回结果进行判断
-
-
-    #测试数据
-    '''data={'code': 0,
-'error_detect_types': 0,
-'filename': 'prd-api1/2019/0628/abc16a09674213c00c608ef83d19d4d9-5699102.jpg',
-'detect_types': '504205',
-'age': {'result': 19},
-'detect_type': 131072,
-'color': {'result': 'baixi'},
-'blackhead': {'filename': 'prd-apiout1/2019/0628/18499943987706adb45e6787dd1d868d-5698935.jpg', 'count': 3, 'score': 97},
-'skin_type': {'filename': 'prd-apiout1/2019/0628/6317f1b7ca992a70a7c5d0cadf22c6c4-5699103.jpg', 'result': '0.765',
-               'class': [{'result': 0.261, 'class': 'left_cheek'},
-                         {'result': 1, 'class': 'right_cheek'},
-                         {'result': 1, 'class': 'forehead'},
-                         {'result': 0.233, 'class': 'chin'}],
-               'oily': '1.000000', 'dry': '0.000000', 'mixed': '0.000000', 'score': 45},
-'moisture': {'filename': 'prd-apiout1/2019/0628/1b9956b9f34663703437a7ca19215360-5698936.jpg', 'result': '0.484', 'score': '89',
-              'class': [{'result': 0.405, 'class': 'left_cheek'},
-                        {'result': 0.643, 'class': 'right_cheek'},
-                        {'result': 0.503, 'class': 'forehead'},
-                        {'result': 0.312, 'class': 'chin'}]},
-'roughness': {'filename': 'prd-apiout1/2019/0628/10e78d1f5b4e2178dd544603979c745b-5698937.jpg', 'score': 80},
-'appearance': {'score': 86},
-'pore': {'filename': 'prd-apiout1/2019/0628/4a260193e23b95bcc4eb46a9f949702d-5699030.jpg', 'count': 79, 'score': 96},
-'wrinkle': {'filename': 'prd-apiout1/2019/0628/ae5fc0af9f39fbb38e4170fdf8aba522-5699031.jpg', 'count': 2, 'score': 95,
-              'class': [{'count': 0, 'class': 'forehead'},
-                        {'count': 2, 'class': 'eyecorner'},
-                        {'count': 0, 'class': 'nasolabial'},
-                        {'count': 0, 'class': 'crowfeet'},
-                         {'count': 0, 'class': 'glabella'}]},
-'dark_circle': {'filename': 'prd-api1/2019/0628/abc16a09674213c00c608ef83d19d4d9-5699102.jpg', 'result': 0},
-'pockmark': {'filename': 'prd-apiout1/2019/0628/83162ff1be216e8e2983da43cc63b2fb-5699105.jpg', 'count': 2, 'score': 96},
-'face_box': {'x0': 68, 'y0': 69, 'x1': 385, 'y1': 537},
-'id': '2df348a2289d5dd0b292d7d421fb7450'}'''
-
 
     #根据返回数据存储数据库
-
     #Table1 皮肤分析历史
     new_skin = models.UserSkin.objects.create()
     new_skin.uid = request.session['user_id']
     #年轻度
     age_ = data['age']['result']
-    if age_>=0 and age_<=25:
+    if age_ >= 0 and age_ <= 25:
         y = 100
-    elif age_>=26 and age_<=35:
+    elif age_ >= 26 and age_ <= 35:
         y = 90
-    elif age_>=36 and age_<=46:
+    elif age_ >= 36 and age_ <= 46:
         y = 80
-    elif age_>=46 and age_<=56:
+    elif age_ >= 46 and age_ <= 56:
         y = 70
     else:
         y=60
