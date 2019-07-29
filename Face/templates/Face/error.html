@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1 ,maximum-scale=1 ,user-scalable=no">
+<title>404</title>
+<style>
+	body{
+		
+	background-color:black;
+		
+}
+	*{
+	 overflow-x:hidden;
+		overflow-y:hidden;
+}
+	p{
+		color: white;
+		font-size: 1.5em;	
+	align-self: center;
+	}
+	#message{
+		    position: absolute;
+            top: 50%;
+            left: 40%;
+            width: 500px;
+		align-content: center;
+			
+	}
+	#button{
+		  background: none;
+  border: none;
+  font-family:Constantia, Lucida Bright, DejaVu Serif, Georgia, serif;
+  font-weight: bold;
+  font-size: 1em;
+  margin: 15px 35px;
+  padding: 15px 40px;
+  min-width: 2em;
+  border-radius: 50px;
+  min-height: 1em;
+  color:black;
+  cursor: pointer;
+  backface-visibility: hidden;
+  transition: all .3s;
+  background: linear-gradient(white, white, white);
+  box-shadow: 0px 4px 30px rgba(19, 127, 212, 0.4);
+	}
+	
+	#button1{
+			    position: absolute;
+            top: 70%;
+            left: 38%;
+            width: 400px;
+		align-content: center;
+	}
+	</style>
+</head>
+<body>
+<div id="message">
+	<p> {{message}}</p>
+	</div>
+<div id="button1">
+	<input  id="button" type="button" value="重试" onClick="javascript :history.back(-1);">
+<!-->这个钮点击是返回上一页<!-->
+</div>
+</body>
+</html>

@@ -52,7 +52,7 @@ def register(request):
 
 #注销
 def logout(request):
-    if not request.session.get('is_login',None):
+    if not request.session.get('is_login', None):
         #如果没有登录 也就不需要注销
         return redirect('index')
     #否则清除session
@@ -61,7 +61,10 @@ def logout(request):
     
 #检测
 def detect(request):
-    return render(request,'Face/takephoto.html')
+    if not request.session.get('is_login', None):
+        return render(request, 'Face/error.html', {"message":"请先进行登录"})
+    else:
+        return render(request, 'Face/takephoto.html')
     
 #显示结果   
 def result(request):
@@ -93,6 +96,10 @@ def result(request):
     # 解码
     req_con = response.content.decode('utf-8')
     data = JSONDecoder().decode(req_con)
+
+    #出错处理
+    if data['code'] != 0:
+        return render(request, 'Face/error.html', {"message": data['msg']})
 
     #根据返回数据存储数据库
     #Table1 皮肤分析历史
