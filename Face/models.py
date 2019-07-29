@@ -2,10 +2,11 @@ from django.db import models
 import django.utils.timezone as timezone
 
 # Create your models here.
-#用户信息
 
+
+# 用户信息
 class UserInfo(models.Model):
-    uid = models.CharField(max_length=11,unique=True, primary_key=True)
+    uid = models.CharField(max_length=11, unique=True, primary_key=True)
     name = models.CharField(max_length=10)
     passwd = models.CharField(max_length=20)
     gender = models.CharField(max_length=2, default='女')
@@ -13,10 +14,12 @@ class UserInfo(models.Model):
 
     def __str__(self):
         return self.name
+
     class Meta:
         db_table = 'UserInfo'
 
-#皮肤分析历史
+
+# 皮肤分析历史
 class UserSkin(models.Model):
     uid = models.CharField(max_length=11,primary_key=True)
     stime = models.DateTimeField(default=timezone.now)
@@ -33,7 +36,8 @@ class UserSkin(models.Model):
     class Meta:
         db_table = 'UserSkin'
 
-#五官特征分析结果
+
+# 五官特征分析结果
 class UserFace(models.Model):
     uid = models.CharField(max_length=11)
     ftime = models.DateTimeField(default=timezone.now)
@@ -48,7 +52,8 @@ class UserFace(models.Model):
     class Meta:
         db_table = 'UserFace'
 
-#肤质测试记录
+
+# 肤质测试记录
 class SkinRecord(models.Model):
     uid = models.CharField(max_length=11)
     time = models.DateTimeField(default= timezone.now)
@@ -82,7 +87,8 @@ class SkinRecord(models.Model):
     class Meta:
         db_table = 'SkinRecord'
 
-#五官特征测试记录
+
+# 五官特征测试记录
 class ImageRecord(models.Model):
     uid = models.CharField(max_length=11)
     time = models.DateTimeField(default=timezone.now)
