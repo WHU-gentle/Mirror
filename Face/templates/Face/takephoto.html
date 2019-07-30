@@ -74,7 +74,7 @@
 	 function UploadPic() {                 
 		 // Generate the image data（将Canvas的内容保存为图片借助toDataURL来实现） 方法返回一个包含图片展示的 data URI 。 
 		 
-		  var Pic = document.getElementById("canvas").toDataURL("image/jpg");  
+		  var Pic = document.getElementById("canvas").toDataURL("image/jpeg");  
 		  document.getElementById("pic_url").value = Pic; 
 		  var form=document.getElementById("p");
 		  form.submit();            

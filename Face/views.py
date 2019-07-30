@@ -78,7 +78,7 @@ def result(request):
     cur_dir = os.path.dirname(__file__)  # 获取当前目录
     file_path = os.path.join(cur_dir,'../static/p.jpg')
     img = request.POST['pic']
-    imagedata = decode_base64(img[len("data:image/jpg;base64,"):])
+    imagedata = decode_base64(img[len("data:image/jpeg;base64,"):])
     file = open(file_path, 'wb')
     file.write(imagedata)
     file.close()
