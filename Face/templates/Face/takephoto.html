@@ -19,6 +19,7 @@
 			min-width: 100%;
 			width:500px;
 			height:500px;
+			transform:rotate(180deg);
 
 		}
 		
@@ -105,6 +106,8 @@
      let canvas = document.getElementById("canvas");
       let ctx = canvas.getContext('2d');
      // ctx.drawImage(canvas, 0,0,video.width,video.height);
+	  ctx.translate(500,500);
+	  ctx.rotate(Math.PI);
 	  ctx.drawImage(video,0,0);
 	  
       }
