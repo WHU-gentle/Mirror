@@ -122,7 +122,7 @@ def result(request):
         y = 60
     new_skin.youngScore = int(y*0.5+data['wrinkle']['score']*0.5)
     # 健康度
-    darkCir = data['dark_circle']['result']
+    darkCir = float(data['dark_circle']['result'])
     if 0 <= darkCir <= 25:
         d = 100
     elif 26 <= darkCir <= 35:
