@@ -100,6 +100,9 @@ def result(request):
     response = requests.post(url, data=img, headers=headers)
     # 解码
     req_con = response.content.decode('utf-8')
+    print("************************")
+    print(req_con)
+    print("************************")
     data = JSONDecoder().decode(req_con)
     # 出错处理
     if data['code'] != 0:

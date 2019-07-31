@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+{% load pwa %} {% load static %}
+
+<head>
+    {% progressive_web_app_meta %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8"> {% block head %} {% endblock %}
+</head>
+
+<body>
+    {% block content %} {% endblock %}
+</body>
