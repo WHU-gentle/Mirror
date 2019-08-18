@@ -1,5 +1,6 @@
 from django.db import models
-import django.utils.timezone as timezone
+from django.utils import timezone
+
 
 # Create your models here.
 
@@ -10,7 +11,7 @@ class UserInfo(models.Model):
     name = models.CharField(max_length=10)
     passwd = models.CharField(max_length=20)
     gender = models.CharField(max_length=2, default='女')
-    birthday = models.DateField(default=timezone.now().date)
+    birthday = models.DateField(default=timezone.now().date())
 
     def __str__(self):
         return self.name
@@ -22,7 +23,7 @@ class UserInfo(models.Model):
 # 皮肤分析历史
 class UserSkin(models.Model):
     uid = models.CharField(max_length=11,primary_key=True)
-    stime = models.DateTimeField(default=timezone.now)
+    stime = models.DateTimeField(default=timezone.now())
     totalScore = models.IntegerField(default=100)
     youngScore = models.IntegerField(default=100)
     healthScore = models.IntegerField(default=100)
@@ -40,7 +41,7 @@ class UserSkin(models.Model):
 # 五官特征分析结果
 class UserFace(models.Model):
     uid = models.CharField(max_length=11)
-    ftime = models.DateTimeField(default=timezone.now)
+    ftime = models.DateTimeField(default=timezone.now())
     faceShape = models.CharField(max_length=16)
     lipShape = models.CharField(max_length=16)
     chinShape = models.CharField(max_length=16)
@@ -56,7 +57,7 @@ class UserFace(models.Model):
 # 肤质测试记录
 class SkinRecord(models.Model):
     uid = models.CharField(max_length=11)
-    time = models.DateTimeField(default= timezone.now)
+    time = models.DateTimeField(default= timezone.now())
     age = models.IntegerField()
     wrinkleCount = models.IntegerField()
     wrinkleScore = models.IntegerField()
@@ -91,7 +92,7 @@ class SkinRecord(models.Model):
 # 五官特征测试记录
 class ImageRecord(models.Model):
     uid = models.CharField(max_length=11)
-    time = models.DateTimeField(default=timezone.now)
+    time = models.DateTimeField(default=timezone.now())
     image = models.BinaryField()
 
     class Meta:

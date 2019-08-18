@@ -6,10 +6,6 @@
 
 a,img{border:0;}
 
-body{
-	background-color: black;
-
-}
 
 
 li { list-style: none; }
@@ -36,12 +32,11 @@ img { border: none; }
 }
 
 #logo{ 
-	width:30px;
-	height:30px;
-	margin-top: 0px; 
-	margin-left:35px;
+	
+	margin-left:180px;
+	float:left;
+	align-self: flex-end;
 }
-
 
 #nav {
 	background:-webkit-radial-gradient(rgb(255,255,255),rgb(140,140,140));
@@ -49,162 +44,55 @@ img { border: none; }
     background:-moz-radial-gradient(rgb(255,255,255),rgb(140,140,140));
     background:-ms-radial-gradient(rgb(255,255,255),rgb(140,140,140));
     background:radial-gradient(rgb(255,255,255),rgb(140,140,140));
-    width: 200px;
-    height: 200px;
+    width: 110px;
+    height:110px;
     border-radius: 50%;
     position: fixed;
-    bottom: -80px;
-    right: -80px;
+    bottom: -40px;
+    right: -40px;
     cursor: pointer;
 }
 #nav img {
 	position: absolute;
-	bottom: 85px;
-	right: 85px;
+	bottom: 42px;
+	right: 42px;
 }
 #out{
 	position: fixed;
-	width: 600px;
-	height: 600px;
-	right: -450px;
-	bottom: -450px; 
+	width:300px;
+	height: 300px;
     border-radius: 50%;
     background-color: rgb(210,210,206);
     opacity: 0.6;
+	right:-150px;
+	bottom:-150px;
 }
  #first {
     position: absolute;
-    width: 100px;
-    height: 100px;
-    left: 100px;
-    top: 100px;
+    width: 50px;
+    height: 50px;
     opacity: 1;
     transform:rotate(0deg);
+	left:92px;
+	top:16px;
 }
 #second {
     position: absolute;
-    width: 100px;
-    height: 100px;
-    left: 100px;
-    top: 100px;
+    width: 50px;
+    height: 50px;
+	left:45px;
+	top:47px;
     transform:rotate(45deg);
     opacity: 1;
 }
 #third {
     position: absolute;
-    width: 100px;
-    height: 100px;
-    left: 100px;
-    top: 100px;
+    width: 50px;
+    height: 50px;
+    left:16px;
+	top:97px;
+	top:97px;
     transform:rotate(90deg);
     opacity: 1;
 } /**/
 
-/*时间轴*/
-.timeline ul li {
-  list-style-type: none;
-  position: relative;
-  width: 6px;
-  margin: 0 auto;
-  padding-top: 50px;
-  background: #fff;
-}
-.timeline ul li::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%) rotate(45deg);
-  width: 20px;
-  height: 20px;
-  z-index: 2;
-  background: #eee;
-}
-.timeline ul li div {
-  position: relative;
-  bottom: 0;
-  width: 400px;
-  padding: 20px;
-  background: #fff;
-  box-shadow: 4px 13px 30px 1px rgba(252, 56, 56, 0.2);
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-}
-.timeline ul li div time {
-  position: absolute;
-  background: #f5af19;
-  width: 80px;
-  height: 30px;
-  top: -15px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  letter-spacing: 2px;
-}
-.timeline ul li div div {
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.timeline ul li div div p {
-  text-align: center;
-}
-.timeline ul li div .discovery {
-  margin-right: 10px;
-}
-.timeline ul li:nth-of-type(odd) > div {
-  left: 45px;
-}
-.timeline ul li:nth-of-type(even) > div {
-  left: -439px;
-}
- 
-.timeline ul li div {
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
-}
-.timeline ul li:nth-of-type(odd) div {
-  transform: translate3d(100px, -10px, 0) rotate(10deg);
-}
-.timeline ul li:nth-of-type(even) div {
-  transform: translate3d(-100px, -10px, 0) rotate(10deg);
-}
-.timeline ul li.in-view div {
-  transform: none;
-  visibility: visible;
-  opacity: 1;
-}
- 
-@media screen and (max-width: 900px) {
-  .timeline ul li div {
-    width: 250px;
-    flex-direction: column;
-  }
-  .timeline ul li div div {
-    width: 80%;
-    margin: 10px;
-  }
-  .timeline ul li:nth-of-type(even) > div {
-    left: -289px;
-  }
-}
-@media screen and (max-width: 600px) {
-  body {
-    background: #8bfff4;
-  }
- 
-  .timeline ul li {
-    margin-left: 20px;
-  }
-  .timeline ul li div {
-    width: calc(100vw - 91px);
-  }
-  .timeline ul li:nth-of-type(even) > div {
-    left: 45px;
-  }
-}

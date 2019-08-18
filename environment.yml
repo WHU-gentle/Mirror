@@ -1,0 +1,57 @@
+name: New_Mirror
+channels:
+  - defaults
+  - bioconda
+  - r
+  - conda-forge
+dependencies:
+  - _libgcc_mutex=0.1=main
+  - asn1crypto=0.24.0=py36_0
+  - backcall=0.1.0=py36_0
+  - ca-certificates=2019.5.15=0
+  - certifi=2019.6.16=py36_1
+  - cffi=1.12.3=py36h2e261b9_0
+  - chardet=3.0.4=py36_1
+  - cryptography=2.3.1=py36hc365091_0
+  - decorator=4.4.0=py36_1
+  - django=2.1.7=py36_0
+  - django-debug-toolbar=2.0=py_0
+  - idna=2.8=py36_0
+  - ipython_genutils=0.2.0=py_1
+  - jedi=0.13.3=py36_0
+  - libedit=3.1.20181209=hc058e9b_0
+  - libffi=3.2.1=hd88cf55_4
+  - libgcc-ng=9.1.0=hdf63c60_0
+  - libstdcxx-ng=9.1.0=hdf63c60_0
+  - ncurses=6.1=he6710b0_1
+  - openssl=1.0.2s=h7b6447c_0
+  - parso=0.5.0=py_0
+  - pexpect=4.7.0=py36_0
+  - pickleshare=0.7.5=py36_0
+  - pip=19.1.1=py36_0
+  - prompt_toolkit=2.0.9=py36_0
+  - ptyprocess=0.6.0=py36_0
+  - pycparser=2.19=py36_0
+  - pygments=2.4.2=py_0
+  - pyopenssl=19.0.0=py36_0
+  - pysocks=1.7.0=py36_0
+  - python=3.6.5=hc3d631a_2
+  - pytz=2019.1=py_0
+  - readline=7.0=h7b6447c_5
+  - requests=2.22.0=py36_0
+  - requests-toolbelt=0.9.1=py_0
+  - setuptools=41.0.1=py36_0
+  - six=1.12.0=py36_0
+  - sqlite=3.28.0=h7b6447c_0
+  - sqlparse=0.3.0=py_0
+  - tk=8.6.8=hbc83047_0
+  - traitlets=4.3.2=py36_0
+  - urllib3=1.24.2=py36_0
+  - wcwidth=0.1.7=py36_0
+  - wheel=0.33.4=py36_0
+  - xz=5.2.4=h14c3975_4
+  - zlib=1.2.11=h7b6447c_3
+  - pip:
+    - django-progressive-web-app==0.1.1
+    - django-sslserver==0.20
+prefix: /home/hzhou/miniconda3/envs/New_Mirror

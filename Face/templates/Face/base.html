@@ -1,13 +1,63 @@
+{# 基础模板，其他网页模板继承此模板内容 #}
+
+{% load pwa %} {# 导入pwa #}
+{% load static %} {# 导入静态文件地址 #}
+
 <!DOCTYPE html>
-<html>
-{% load pwa %} {% load static %}
+
+<html lang="zh-CN">
 
 <head>
+    <meta charset="UTF-8">
+    <title>Magic Mirror</title>
+
+    <link href="/static/css/style1.css" type="text/css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: black;
+            align-content: center;
+        }
+    </style>
+    <script src="/static/js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="/static/js/echarts.min.js"></script>
+    <script src="/static/js/webcam.js"></script>
+    <script src="/static/js/speak.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+
+
     {% progressive_web_app_meta %}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8"> {% block head %} {% endblock %}
+    {% block head %}
+        {# 网页头文件 #}
+        
+    {% endblock %}
 </head>
 
-<body>
-    {% block content %} {% endblock %}
-</body>
+{% block outbody %}
+    {# 正文模块，包括 body 标签 #}
+    <body>
+    {% block nav %}
+        {# 导航模块 #} {#ZHANG CHEN todo 导航部分需要修改一下样式 #}
+    	<div id="out">
+	    	<div id="first"><a href="{% url 'Face:history' %}"><img style="width:50px;height:50px" src="/static/img/history.png"></a></div>
+	    	<div id="second"><a href="{% url 'Face:detect' %}"><img style="width:50px;height:50px" src="/static/img/scan.png" ></a></div>
+	    	<div id="third"><a href="{% url 'Face:login' %}"><img style="width:50px;height:50px" src="/static/img/set.png"></a></div>
+        </div>
+		<div id="nav">
+        <a href="{% url 'Face:index' %}"><img style="width:50px;height:50px"  src="/static/img/home.png"></a>
+        </div>
+    
+    {% endblock %}
+
+    {% block body %}
+        {# 正文模块，子模板主要内容放在这里面 #}
+    {% endblock %}
+
+
+    {% block script %}
+        {# 脚本模块，放需要网页加载完毕才能运行的脚本 #}
+    {% endblock %}
+    </body>
+{% endblock %}
+
+</html>

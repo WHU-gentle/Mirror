@@ -1,13 +1,11 @@
+{% extends "Face/base.html" %} {# 继承基础模板 #}
 {% block head %}
-<meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=0.5 ,maximum-scale=0.5 ,user-scalable=no">
-<title>scan-result</title>
-<link href="/static/css/style1.css" type="text/css" rel="stylesheet">
-<link type="text/css" rel="stylesheet" href="/static/css/scan.css" />
-<script src="/static/js/jquery-1.8.0.min.js"></script>
-<script src="/static/js/circle.js" type="text/javascript"></script>
-<script type="text/javascript" src="/static/js/jquery-1.7.2-min.js"></script>
-{% endblock %} {% block content %}
-<div id="result">
+    <link type="text/css" rel="stylesheet" href="/static/css/scan.css"/>
+
+{% endblock %}
+
+{% block body %}
+    <div id="result">
 
     <p>分数</p>
     <div class="block1">
@@ -15,373 +13,488 @@
         <div id="ring1" style="width:700px;height:164px; font-size: 20px;"></div>
         <div id="advice">
             <h2 align="center">
-                您的皮肤健康度: {% if Userskin.healthScore >= 80 %} {{pretty}} {% elif Userskin.healthScore >= 60 %} {{moderate}} {% else %} {{bad}} {% endif %} ，油干性: {% if Userskin.oilScore >= 80 %} {{pretty}} {% elif Userskin.oilScore >= 60 %} {{moderate}} {% else %} {{bad}}
-                {% endif %} ， 细腻度: {% if Userskin.softScore >= 80 %} {{pretty}} {% elif Userskin.softScore >= 60 %} {{moderate}} {% else %} {{bad}} {% endif %}。
+                您的皮肤健康度:
+                {% if Userskin.healthScore >= 80 %}
+                    {{ pretty }}
+                {% elif Userskin.healthScore >= 60 %}
+                    {{ moderate }}
+                {% else %}
+                    {{ bad }}
+                {% endif %}
+                ，油干性:
+                {% if Userskin.oilScore >= 80 %}
+                    {{ pretty }}
+                {% elif Userskin.oilScore >= 60 %}
+                    {{ moderate }}
+                {% else %}
+                    {{ bad }}
+                {% endif %}
+                ，
+                细腻度:
+                {% if Userskin.softScore >= 80 %}
+                    {{ pretty }}
+                {% elif Userskin.softScore >= 60 %}
+                    {{ moderate }}
+                {% else %}
+                    {{ bad }}
+                {% endif %}。
             </h2>
         </div>
     </div>
-
+    </div>
     <p>指标</p>
     <div id="index">
-        <div class="block2">
-            <h1>皱纹</h1>
-            <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{wrinkle.filename}}></div>
-            <h1>{{wrinkle.score}}</h1>
+    <div class="block2">
+        <h1>皱纹</h1>
+        <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{ wrinkle.filename }} ></div>
+        <h1>{{ wrinkle.score }}</h1>
+    </div>
+    <div class="block2">
+        <h1>肤色</h1>
+        <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{ skin_type.filename }} ></div>
+        <div id="advice">
+            <h2 align="left">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                {% if color.result == "toubai" %}
+                    {{ penetrating_white }}
+                {% elif color.result == "baixi" %}
+                    {{ white }}
+                {% elif color.result == "ziran" or color.result == "xiaomai" %}
+                    {{ nature }}
+                {% else %}
+                    {{ dark }}
+                {% endif %}
+            </h2>
         </div>
-        <div class="block2">
-            <h1>肤色</h1>
-            <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{skin_type.filename}}></div>
-            <div id="advice">
-                <h2 align="left">
-                    &nbsp;&nbsp;&nbsp;&nbsp; {% if color.result == "toubai" %} {{penetrating_white}} {% elif color.result == "baixi" %} {{white}} {% elif color.result == "ziran" or color.result == "xiaomai" %} {{nature}} {% else %} {{dark}} {% endif %}
-                </h2>
-            </div>
+    </div>
+    <div class="block2">
+        <h1>肤质</h1>
+        <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{ skin_type.filename }} ></div>
+        <h1>{{ skin_type.score }}</h1>
+    </div>
+    <div class="block2">
+        <h1>水分</h1>
+        <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{ moisture.filename }} ></div>
+        <h1>{{ moisture.score }}</h1>
+    </div>
+    <div class="block2">
+        <h1>粗糙度</h1>
+        <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{ roughness.filename }} ></div>
+        <h1>{{ roughness.score }}</h1>
+        <div id="advice">
+            <h2 align="center">
+                你属于:
+                {% if Userskin.softScore >= 90 %}
+                    {{ shelling }}
+                {% elif Userskin.softScore >= 80 %}
+                    {{ shell }}
+                {% elif Userskin.softScore >= 60 %}
+                    {{ yolk }}
+                {% else %}
+                    {{ fry }}
+                {% endif %}
+            </h2>
+            <br>
+            <h2 align="left">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                {% if Userskin.softScore >= 90 %}
+                    {{ shelling_advice }}
+                {% elif Userskin.softScore >= 80 %}
+                    {{ shell_advice }}
+                {% elif Userskin.softScore >= 60 %}
+                    {{ yolk_advice }}
+                {% else %}
+                    {{ fry_advice }}
+                {% endif %}
+            </h2>
         </div>
-        <div class="block2">
-            <h1>肤质</h1>
-            <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{skin_type.filename}}></div>
-            <h1>{{skin_type.score}}</h1>
-        </div>
-        <div class="block2">
-            <h1>水分</h1>
-            <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{moisture.filename}}></div>
-            <h1>{{moisture.score}}</h1>
-        </div>
-        <div class="block2">
-            <h1>粗糙度</h1>
-            <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{roughness.filename}}></div>
-            <h1>{{roughness.score}}</h1>
-            <div id="advice">
-                <h2 align="center">
-                    你属于: {% if Userskin.softScore >= 90 %} {{shelling}} {% elif Userskin.softScore >= 80 %} {{shell}} {% elif Userskin.softScore >= 60 %} {{yolk}} {% else %} {{fry}} {% endif %}
-                </h2>
+    </div>
+    </div>
+    <p>皮肤问题</p>
+    <div id="problems">
+    <div class="block2">
+        <h1>出油情况</h1>
+        <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{ skin_type.filename }} ></div>
+        <h1>{{ Userskin.oilScore }}</h1>
+        <div id="advice">
+            <h2 align="center">
+                当前出油状态为:
+                {% if Userskin.oilScore >= 90 %}
+                    {{ taiyou }}
+                {% elif Userskin.oilScore >= 80 %}
+                    {{ zhengchang }}
+                {% else %}
+                    {{ taigan }}
+                {% endif %}
                 <br>
-                <h2 align="left">
-                    &nbsp;&nbsp;&nbsp;&nbsp; {% if Userskin.softScore >= 90 %} {{shelling_advice}} {% elif Userskin.softScore >= 80 %} {{shell_advice}} {% elif Userskin.softScore >= 60 %} {{yolk_advice}} {% else %} {{fry_advice}} {% endif %}
-                </h2>
-            </div>
+            </h2>
+            <h2 align="left">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                {% if Userskin.oilScore >= 90 %}
+                    {{ oil }}
+                {% elif Userskin.oilScore >= 80 %}
+                    {{ middle }}
+                {% else %}
+                    {{ dry }}
+                {% endif %}
+            </h2>
         </div>
+    </div>
+    <div class="block2">
+        <h1>黑眼圈</h1>
+        <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{ dark_circle.filename }} ></div>
+        <h1>{{ dark_circle.result }}</h1>
+        <div id="advice">
+            <h2 align="center">
+                黑眼圈严重程度:
+                {% if dark_circle.result >= 80 %}
+                    {{ severe }}
+                {% elif dark_circle.result >= 60 %}
+                    {{ medium }}
+                {% else %}
+                    {{ light }}
+                {% endif %}
+            </h2>
+            <br>
+            <h2 align="left">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                {% if dark_circle.result >= 80 %}
+                    {{ severe_darkcricle }}
+                {% elif dark_circle.result >= 60 %}
+                    {{ medium_darkcricle }}
+                {% else %}
+                    {{ light_darkcricle }}
+                {% endif %}
+            </h2>
+        </div>
+    </div>
+    <div class="block2">
+        <h1>痘痘</h1>
+        <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{ pockmark.filename }} ></div>
+        <h1>{{ pockmark.score }}</h1>
+        <div id="advice">
+            <h2 align="center">
+                严重程度:
+                {% if pockmark.score >= 80 %}
+                    {{ light }}
+                {% elif pockmark.score >= 60 %}
+                    {{ medium }}
+                {% else %}
+                    {{ severe }}
+                {% endif %}
+            </h2>
+            <br>
+            <h2 align="left">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                {% if pockmark.score >= 80 %}
+                    {{ light_pockmark }}
+                {% elif pockmark.score >= 60 %}
+                    {{ medium_darkcricle }}
+                {% else %}
+                    {{ severe_pockmark }}
+                {% endif %}
+            </h2>
+        </div>
+    </div>
+    <div class="block2">
+        <h1>黑头</h1>
+        <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{ blackhead.filename }} ></div>
+        <h1>{{ blackhead.score }}</h1>
+        <div id="advice">
+            <h2 align="center">
+                黑头个数:{{ blackhead.count }}个，<br>
+                黑头程度:
+                {% if blackhead.score >= 80 %}
+                    {{ light }}
+                {% elif blackhead.score >= 60 %}
+                    {{ medium }}
+                {% else %}
+                    {{ severe }}
+                {% endif %}
+            </h2>
+            <br>
+            <h2 align="left">
+                {% if blackhead.score >= 80 %}
+                    {{ small_blackhead }}
+                {% elif blackhead.score >= 60 %}
+                    {{ moderate_blackhead }}
+                {% else %}
+                    {{ thick_blackhead }}
+                {% endif %}
+            </h2>
+        </div>
+    </div>
+    <div class="block2">
+        <h1>毛孔</h1>
+        <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{ pore.filename }} ></div>
+        <h1>{{ pore.score }}</h1>
+        <div id="advice">
+            <h2 align="center">
+                毛孔：
+                {% if pore.score >= 80 %}
+                    {{ small }}
+                {% elif pore.score >= 60 %}
+                    {{ moderate }}
+                {% else %}
+                    {{ thick }}
+                {% endif %}
+            </h2>
+        </div>
+    </div>
+    </div>
+    <p>护肤建议</p>
+     <div id="hufu">
+     <div class="block2">
+     <h1 class="tm">洁面</h1>
+    <div id="advice">
+	<h2 align="center" >
+	{{jiemian}}
+	</h2>
+	</div>
+	</div>
+	 <div class="block2">
+     <h1 class="tm">护肤水</h1>
+    <div id="advice">
+	<h2 align="center" >
+	{{hufushui}}
+	</h2>
+	</div>
+	</div>
+    <div class="block2">
+     <h1 class="tm">精华</h1>
+    <div id="advice">
+	<h2 align="center" >
+	{{jinghua}}
+	</h2>
+	</div>
+	</div>
+		 <div class="block2">
+     <h1 class="tm">乳液&面霜</h1>
+    <div id="advice">
+	<h2 align="center" >
+	{{ruye}}
+	</h2>
+	</div>
+	</div>
+		 <div class="block2">
+     <h1 class="tm">面膜</h1>
+    <div id="advice">
+	<h2 align="center" >
+	{{mianmo}}
+	</h2>
+	</div>
+	</div>
+		 <div class="block2">
+     <h1 class="tm">防晒</h1>
+    <div id="advice">
+	<h2 align="center" >
+	{{fangshai}}
+	</h2>
+	</div>
+	</div>
+	<div class="block2">
+     <h1 class="tm">眼霜</h1>
+    <div id="advice">
+	<h2 align="center" >
+	{{yanshuang}}
+	</h2>
+	</div>
+	</div>
+	</div>
+{% endblock %}
 
-        <p>皮肤问题</p>
-        <div id="problems">
-            <div class="block2">
-                <h1>出油情况</h1>
-                <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{skin_type.filename}}></div>
-                <h1>{{Userskin.oilScore}}</h1>
-                <div id="advice">
-                    <h2 align="center">
-                        当前出油状态为: {% if Userskin.oilScore >= 90 %} {{taiyou}} {% elif Userskin.oilScore >= 80 %} {{zhengchang}} {% else %} {{taigan}} {% endif %}
-                        <br>
-                    </h2>
-                    <h2 align="left">
-                        &nbsp;&nbsp;&nbsp;&nbsp; {% if Userskin.oilScore >= 90 %} {{oil}} {% elif Userskin.oilScore >= 80 %} {{middle}} {% else %} {{dry}} {% endif %}
-                    </h2>
-                </div>
-            </div>
-            <div class="block2">
-                <h1>黑眼圈</h1>
-                <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{dark_circle.filename}}></div>
-                <h1>{{dark_circle.result}}</h1>
-                <div id="advice">
-                    <h2 align="center">
-                        黑眼圈严重程度: {% if dark_circle.result >= 80 %} {{severe}} {% elif dark_circle.result >= 60 %} {{medium}} {% else %} {{light}} {% endif %}
-                    </h2>
-                    <br>
-                    <h2 align="left">
-                        &nbsp;&nbsp;&nbsp;&nbsp; {% if dark_circle.result >= 80 %} {{severe_darkcricle}} {% elif dark_circle.result >= 60 %} {{medium_darkcricle}} {% else %} {{light_darkcricle}} {% endif %}
-                    </h2>
-                </div>
-            </div>
-            <div class="block2">
-                <h1>痘痘</h1>
-                <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{pockmark.filename}}></div>
-                <h1>{{pockmark.score}}</h1>
-                <div id="advice">
-                    <h2 align="center">
-                        严重程度: {% if pockmark.score >= 80 %} {{light}} {% elif pockmark.score >= 60 %} {{medium}} {% else %} {{severe}} {% endif %}
-                    </h2>
-                    <br>
-                    <h2 align="left">
-                        &nbsp;&nbsp;&nbsp;&nbsp; {% if pockmark.score >= 80 %} {{light_pockmark}} {% elif pockmark.score >= 60 %} {{medium_darkcricle}} {% else %} {{severe_pockmark}} {% endif %}
-                    </h2>
-                </div>
-            </div>
-            <div class="block2">
-                <h1>黑头</h1>
-                <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{blackhead.filename}}></div>
-                <h1>{{blackhead.score}}</h1>
-                <div id="advice">
-                    <h2 align="center">
-                        黑头个数:{{blackhead.count}}个，<br> 黑头程度: {% if blackhead.score >= 80 %} {{light}} {% elif blackhead.score >= 60 %} {{medium}} {% else %} {{severe}} {% endif %}
-                    </h2>
-                    <br>
-                    <h2 align="left">
-                        {% if blackhead.score >= 80 %} {{small_blackhead}} {% elif blackhead.score >= 60 %} {{moderate_blackhead}} {% else %} {{thick_blackhead}} {% endif %}
-                    </h2>
-                </div>
-            </div>
-            <div class="block2">
-                <h1>毛孔</h1>
-                <div class="img"><img src=https://api.yimei.ai/fileSvr/get/{{pore.filename}}></div>
-                <h1>{{pore.score}}</h1>
-                <div id="advice">
-                    <h2 align="center">
-                        毛孔： {% if pore.score >= 80 %} {{small}} {% elif pore.score >= 60 %} {{moderate}} {% else %} {{thick}} {% endif %}
-                    </h2>
-                </div>
-            </div>
-
-            <div id="out">
-                <div id="first">
-                    <a href="history"><img src="/static/img/history.png"></a>
-                </div>
-                <div id="second">
-                    <a href="detect"><img src="/static/img/scan.png"></a>
-                </div>
-                <div id="third">
-                    <a href="info"><img src="/static/img/set.png"></a>
-                </div>
-            </div>
-
-            <div id="nav">
-                <a href="../"> <img src="/static/img/home.png"></a>
-            </div>
-
-            <script type="text/javascript" src="/static/js/jquery-1.7.2-min.js"></script>
-            <script type="text/javascript" src="/static/js/echarts.min.js"></script>
-            <script>
-                var ring = echarts.init(document.getElementById('ring'));
-                var data1 = {
-                    {
-                        age.result | safe
+{% block script %}
+ <script>
+        var ring = echarts.init(document.getElementById('ring'));
+        var data1 ={{age.result|safe}};  //年龄
+        var data2 ={{Userskin.totalScore|safe}};                  //总分
+        var data3 ={{Userskin.softScore|safe}};                   //细腻度分数
+        var value = [];
+        value.push(data1);
+        value.push(data2);
+        value.push(data3);
+        var labelTop = {
+            normal: {
+                label: {
+                    show: true,
+                    position: 'center',
+                    formatter: '{b}',
+                    textStyle: {
+                        baseline: 'bottom',
+                        fontsize: '20'
                     }
-                }; //年龄
-                var data2 = {
-                    {
-                        Userskin.totalScore | safe
-                    }
-                }; //总分
-                var data3 = {
-                    {
-                        Userskin.softScore | safe
-                    }
-                }; //细腻度分数
-                var value = [];
-                value.push(data1);
-                value.push(data2);
-                value.push(data3);
-                var labelTop = {
-                    normal: {
-                        label: {
-                            show: true,
-                            position: 'center',
-                            formatter: '{b}',
-                            textStyle: {
-                                baseline: 'bottom',
-                                fontsize: '20'
-                            }
-                        },
-                        labelLine: {
-                            show: false
-                        }
-                    }
-                };
-
-                var labelFromatter = {
-                    normal: {
-                        label: {
-                            formatter: function(params) {
-                                return 100 - params.value
-                            },
-                            textStyle: {
-                                baseline: 'top',
-                                fontSize: '20'
-
-                            }
-                        }
-                    },
+                },
+                labelLine: {
+                    show: false
                 }
-                var labelBottom = {
-                    normal: {
-                        color: '#ccc',
-                        label: {
-                            show: true,
-                            position: 'center'
-                        },
-                        labelLine: {
-                            show: false
-                        }
+            }
+        };
+
+        var labelFromatter = {
+            normal: {
+                label: {
+                    formatter: function (params) {
+                        return 100 - params.value
                     },
-                    emphasis: {
-                        color: 'rgba(0,0,0,0)'
-                    }
-                };
-                var radius = [50, 65];
-                ring.setOption({
-                    color: ["#33bb9f", "#ffa259", "#4cbbe6"],
-                    series: [{
-                        type: 'pie',
-                        center: ['15%', '58%'],
-                        radius: radius,
-                        x: '0%', // for funnel
-                        itemStyle: labelFromatter,
-                        data: [{
-                            name: 'other',
-                            value: 100 - data1,
-                            itemStyle: labelBottom
-                        }, {
-                            name: '年龄',
-                            value: data1,
-                            itemStyle: labelTop
-                        }]
-                    }, {
-                        type: 'pie',
-                        center: ['45%', '58%'],
-                        radius: radius,
-                        x: '20%', // for funnel
-                        itemStyle: labelFromatter,
-                        data: [{
-                            name: 'other',
-                            value: 100 - data2,
-                            itemStyle: labelBottom
-                        }, {
-                            name: '总分',
-                            value: data2,
-                            itemStyle: labelTop
-                        }]
-                    }, {
-                        type: 'pie',
-                        center: ['75%', '58%'],
-                        radius: radius,
-                        x: '40%', // for funnel
-                        itemStyle: labelFromatter,
-                        data: [{
-                            name: 'other',
-                            value: 100 - data3,
-                            itemStyle: labelBottom
-                        }, {
-                            name: '细腻度',
-                            value: data3,
-                            itemStyle: labelTop
-                        }]
-                    }]
-                });
+                    textStyle: {
+                        baseline: 'top',
+                        fontSize: '20'
 
-                var ring = echarts.init(document.getElementById('ring1'));
-                var data4 = {
-                    {
-                        Userskin.youngScore | safe
                     }
-                }; //年轻度分数
-                var data5 = {
-                    {
-                        Userskin.healthScore | safe
-                    }
-                }; // 健康度分数
-                var data6 = {
-                    {
-                        Userskin.oilScore | safe
-                    }
-                }; //油干性分数
-                var value = [];
-                value.push(data4);
-                value.push(data5);
-                value.push(data6);
-                var labelTop = {
-                    normal: {
-                        label: {
-                            show: true,
-                            position: 'center',
-                            formatter: '{b}',
-                            textStyle: {
-                                baseline: 'bottom',
-                                fontsize: '20'
-                            }
-                        },
-                        labelLine: {
-                            show: false
-                        }
-                    }
-                };
-
-                var labelFromatter = {
-                    normal: {
-                        label: {
-                            formatter: function(params) {
-                                return 100 - params.value
-                            },
-                            textStyle: {
-                                baseline: 'top',
-                                fontSize: '20'
-
-                            }
-                        }
-                    },
                 }
-                var labelBottom = {
-                    normal: {
-                        color: '#ccc',
-                        label: {
-                            show: true,
-                            position: 'center'
-                        },
-                        labelLine: {
-                            show: false
-                        }
-                    },
-                    emphasis: {
-                        color: 'rgba(0,0,0,0)'
+            },
+        }
+        var labelBottom = {
+            normal: {
+                color: '#ccc',
+                label: {
+                    show: true,
+                    position: 'center'
+                },
+                labelLine: {
+                    show: false
+                }
+            },
+            emphasis: {
+                color: 'rgba(0,0,0,0)'
+            }
+        };
+        var radius = [50, 65];
+        ring.setOption({
+            color: ["#33bb9f", "#ffa259", "#4cbbe6"],
+            series: [
+                {
+                    type: 'pie',
+                    center: ['15%', '58%'],
+                    radius: radius,
+                    x: '0%', // for funnel
+                    itemStyle: labelFromatter,
+                    data: [
+                        {name: 'other', value: 100 - data1, itemStyle: labelBottom},
+                        {name: '年龄', value: data1, itemStyle: labelTop}
+                    ]
+                },
+                {
+                    type: 'pie',
+                    center: ['45%', '58%'],
+                    radius: radius,
+                    x: '20%', // for funnel
+                    itemStyle: labelFromatter,
+                    data: [
+                        {name: 'other', value: 100 - data2, itemStyle: labelBottom},
+                        {name: '总分', value: data2, itemStyle: labelTop}
+                    ]
+                },
+                {
+                    type: 'pie',
+                    center: ['75%', '58%'],
+                    radius: radius,
+                    x: '40%', // for funnel
+                    itemStyle: labelFromatter,
+                    data: [
+                        {name: 'other', value: 100 - data3, itemStyle: labelBottom},
+                        {name: '细腻度', value: data3, itemStyle: labelTop}
+                    ]
+                }
+            ]
+        });
+
+        var ring = echarts.init(document.getElementById('ring1'));
+        var data4 ={{Userskin.youngScore|safe}};    //年轻度分数
+        var data5 ={{Userskin.healthScore|safe}};    // 健康度分数
+        var data6 ={{Userskin.oilScore|safe}};    //油干性分数
+        var value = [];
+        value.push(data4);
+        value.push(data5);
+        value.push(data6);
+        var labelTop = {
+            normal: {
+                label: {
+                    show: true,
+                    position: 'center',
+                    formatter: '{b}',
+                    textStyle: {
+                        baseline: 'bottom',
+                        fontsize: '20'
                     }
-                };
-                var radius = [50, 65];
-                ring.setOption({
-                    color: ["#ffb1bf", "#a0abff", "#00b384"],
-                    series: [{
-                        type: 'pie',
-                        center: ['15%', '58%'],
-                        radius: radius,
-                        x: '0%', // for funnel
-                        itemStyle: labelFromatter,
-                        data: [{
-                            name: 'other',
-                            value: 100 - data4,
-                            itemStyle: labelBottom
-                        }, {
-                            name: '年轻度',
-                            value: data1,
-                            itemStyle: labelTop
-                        }]
-                    }, {
-                        type: 'pie',
-                        center: ['45%', '58%'],
-                        radius: radius,
-                        x: '20%', // for funnel
-                        itemStyle: labelFromatter,
-                        data: [{
-                            name: 'other',
-                            value: 100 - data5,
-                            itemStyle: labelBottom
-                        }, {
-                            name: '健康度',
-                            value: data2,
-                            itemStyle: labelTop
-                        }]
-                    }, {
-                        type: 'pie',
-                        center: ['75%', '58%'],
-                        radius: radius,
-                        x: '40%', // for funnel
-                        itemStyle: labelFromatter,
-                        data: [{
-                            name: 'other',
-                            value: 100 - data6,
-                            itemStyle: labelBottom
-                        }, {
-                            name: '油干性',
-                            value: data3,
-                            itemStyle: labelTop
-                        }]
-                    }]
-                });
-            </script>
-            {% endblock %}
+                },
+                labelLine: {
+                    show: false
+                }
+            }
+        };
+
+        var labelFromatter = {
+            normal: {
+                label: {
+                    formatter: function (params) {
+                        return 100 - params.value
+                    },
+                    textStyle: {
+                        baseline: 'top',
+                        fontSize: '20'
+
+                    }
+                }
+            },
+        }
+        var labelBottom = {
+            normal: {
+                color: '#ccc',
+                label: {
+                    show: true,
+                    position: 'center'
+                },
+                labelLine: {
+                    show: false
+                }
+            },
+            emphasis: {
+                color: 'rgba(0,0,0,0)'
+            }
+        };
+        var radius = [50, 65];
+        ring.setOption({
+            color: ["#ffb1bf", "#a0abff", "#00b384"],
+            series: [
+                {
+                    type: 'pie',
+                    center: ['15%', '58%'],
+                    radius: radius,
+                    x: '0%', // for funnel
+                    itemStyle: labelFromatter,
+                    data: [
+                        {name: 'other', value: 100 - data4, itemStyle: labelBottom},
+                        {name: '年轻度', value: data1, itemStyle: labelTop}
+                    ]
+                },
+                {
+                    type: 'pie',
+                    center: ['45%', '58%'],
+                    radius: radius,
+                    x: '20%', // for funnel
+                    itemStyle: labelFromatter,
+                    data: [
+                        {name: 'other', value: 100 - data5, itemStyle: labelBottom},
+                        {name: '健康度', value: data2, itemStyle: labelTop}
+                    ]
+                },
+                {
+                    type: 'pie',
+                    center: ['75%', '58%'],
+                    radius: radius,
+                    x: '40%', // for funnel
+                    itemStyle: labelFromatter,
+                    data: [
+                        {name: 'other', value: 100 - data6, itemStyle: labelBottom},
+                        {name: '油干性', value: data3, itemStyle: labelTop}
+                    ]
+                }
+            ]
+        });
+    //语音播报的代码
+    var text = {{speak_text|safe}};
+    speakText(text);
+    //end
+    </script>
+{% endblock %}
